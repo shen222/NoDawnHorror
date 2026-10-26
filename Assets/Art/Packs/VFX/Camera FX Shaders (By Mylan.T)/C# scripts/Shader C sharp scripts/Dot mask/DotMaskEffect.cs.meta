@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: efe188b79011c1b4084a17bb8f1e7a7c
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dotMaterial: {fileID: 2100000, guid: e349259f6d183d047a19cfaf6342e328, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Dot
+    mask/DotMaskEffect.cs
+  uploadId: 759680

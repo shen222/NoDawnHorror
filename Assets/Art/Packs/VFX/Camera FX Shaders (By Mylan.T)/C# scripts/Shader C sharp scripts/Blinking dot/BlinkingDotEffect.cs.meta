@@ -1,0 +1,20 @@
+fileFormatVersion: 2
+guid: 87a5a5b9a6c4d4142b27ef527c44e3c3
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - dotMaterial: {fileID: 2100000, guid: e74f8d8e1ee865b468f7a59f03328a8c, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Blinking
+    dot/BlinkingDotEffect.cs
+  uploadId: 759680

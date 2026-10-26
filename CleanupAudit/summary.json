@@ -1,0 +1,618 @@
+{
+  "enabled": [
+    "Assets/Scenes/Prototyping/MainGame.unity"
+  ],
+  "scenes": [
+    "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity",
+    "Assets/Art/Packs/VFX/GabrielAguiarProductions/FreeQuickEffectsVol1/Scenes/FreeQuickEffectsVol1.unity",
+    "Assets/Art/Packs/VFX/PSXShaderKit/Demo/Demo Scene.unity",
+    "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/VFXPlayerScene.unity",
+    "Assets/JP Environmental Asset Pack/Scenes/Demo.unity",
+    "Assets/JP Environmental Asset Pack/Scenes/ForestExample.unity",
+    "Assets/Scenes/Prototyping/MainGame.unity",
+    "Assets/Scenes/Prototyping/Test/Asset Catalouge.unity",
+    "Assets/Scenes/Prototyping/Test/Camera System.unity",
+    "Assets/Scenes/Prototyping/Test/CharacterController.unity",
+    "Assets/Scenes/Prototyping/Test/Lookcorner 1.unity",
+    "Assets/Scenes/Prototyping/Test/OpenWorld.unity",
+    "Assets/YughuesFreeConcreteMaterials/Preview/Sc_YFCM_Preview.unity"
+  ],
+  "binary": [
+    {
+      "path": "Assets/JP Environmental Asset Pack/Scenes/Demo/LightingData.asset",
+      "bytes": 17713
+    },
+    {
+      "path": "Assets/New Terrain 2.asset",
+      "bytes": 2309852
+    },
+    {
+      "path": "Assets/Scenes/Prototyping/CharacterController/NavMesh-Plane.asset",
+      "bytes": 7236
+    },
+    {
+      "path": "Assets/Scenes/Prototyping/Lookcorner/NavMesh-Terrain.asset",
+      "bytes": 139940
+    }
+  ],
+  "counts": {
+    "all": 3308,
+    "candidates": 2601,
+    "keep": 276
+  },
+  "candidateBytes": 446906648,
+  "groups": {
+    "Assets/Abandoned_House": {
+      "total": 61273366,
+      "candidate": 61273366,
+      "other": 0,
+      "keep": 0,
+      "count": 83,
+      "candidates": 83
+    },
+    "Assets/AmmoPickup.cs": {
+      "total": 549,
+      "candidate": 0,
+      "other": 0,
+      "keep": 549,
+      "count": 1,
+      "candidates": 0
+    },
+    "Assets/Art": {
+      "total": 359375377,
+      "candidate": 275535821,
+      "other": 55015191,
+      "keep": 28824365,
+      "count": 2399,
+      "candidates": 2043
+    },
+    "Assets/Audio": {
+      "total": 4961281,
+      "candidate": 0,
+      "other": 0,
+      "keep": 4961281,
+      "count": 8,
+      "candidates": 0
+    },
+    "Assets/CinemachineChannel5.asset": {
+      "total": 462,
+      "candidate": 462,
+      "other": 0,
+      "keep": 0,
+      "count": 1,
+      "candidates": 1
+    },
+    "Assets/EnemyTypes": {
+      "total": 6734474,
+      "candidate": 3081797,
+      "other": 0,
+      "keep": 3652677,
+      "count": 11,
+      "candidates": 2
+    },
+    "Assets/HealthPickup.cs": {
+      "total": 545,
+      "candidate": 0,
+      "other": 0,
+      "keep": 545,
+      "count": 1,
+      "candidates": 0
+    },
+    "Assets/Industrial_exterior_v2": {
+      "total": 3495631,
+      "candidate": 2826835,
+      "other": 0,
+      "keep": 668796,
+      "count": 71,
+      "candidates": 70
+    },
+    "Assets/JP Environmental Asset Pack": {
+      "total": 360534255,
+      "candidate": 13428328,
+      "other": 347096564,
+      "keep": 9363,
+      "count": 153,
+      "candidates": 13
+    },
+    "Assets/Logs": {
+      "total": 2197125,
+      "candidate": 2197125,
+      "other": 0,
+      "keep": 0,
+      "count": 3,
+      "candidates": 3
+    },
+    "Assets/LowpolyStreetPack": {
+      "total": 80666655,
+      "candidate": 12166125,
+      "other": 0,
+      "keep": 68500530,
+      "count": 227,
+      "candidates": 202
+    },
+    "Assets/New Terrain 2.asset": {
+      "total": 2309852,
+      "candidate": 0,
+      "other": 0,
+      "keep": 2309852,
+      "count": 1,
+      "candidates": 0
+    },
+    "Assets/Prefabs": {
+      "total": 1414179,
+      "candidate": 17042,
+      "other": 0,
+      "keep": 1397137,
+      "count": 13,
+      "candidates": 3
+    },
+    "Assets/Resources": {
+      "total": 9642601,
+      "candidate": 0,
+      "other": 0,
+      "keep": 9642601,
+      "count": 8,
+      "candidates": 0
+    },
+    "Assets/Scenes": {
+      "total": 2569306,
+      "candidate": 2674,
+      "other": 1555421,
+      "keep": 1011211,
+      "count": 11,
+      "candidates": 3
+    },
+    "Assets/Settings": {
+      "total": 63190,
+      "candidate": 7803,
+      "other": 0,
+      "keep": 55387,
+      "count": 7,
+      "candidates": 2
+    },
+    "Assets/SketchFabs": {
+      "total": 21002732,
+      "candidate": 20059606,
+      "other": 0,
+      "keep": 943126,
+      "count": 95,
+      "candidates": 88
+    },
+    "Assets/SnowEffect.mat": {
+      "total": 2929,
+      "candidate": 0,
+      "other": 0,
+      "keep": 2929,
+      "count": 1,
+      "candidates": 0
+    },
+    "Assets/snowflake.png": {
+      "total": 11233,
+      "candidate": 0,
+      "other": 0,
+      "keep": 11233,
+      "count": 1,
+      "candidates": 0
+    },
+    "Assets/The Wasteland LITE": {
+      "total": 54536533,
+      "candidate": 54536533,
+      "other": 0,
+      "keep": 0,
+      "count": 81,
+      "candidates": 81
+    },
+    "Assets/Unity": {
+      "total": 88676,
+      "candidate": 40692,
+      "other": 0,
+      "keep": 47984,
+      "count": 6,
+      "candidates": 3
+    },
+    "Assets/YughuesFreeConcreteMaterials": {
+      "total": 214954413,
+      "candidate": 1730454,
+      "other": 213223959,
+      "keep": 0,
+      "count": 89,
+      "candidates": 3
+    },
+    "Assets/_Scripts": {
+      "total": 178365,
+      "candidate": 1985,
+      "other": 0,
+      "keep": 176380,
+      "count": 37,
+      "candidates": 1
+    }
+  },
+  "dirs": {
+    ".idea": {
+      "bytes": 1144,
+      "files": 5
+    },
+    ".vs": {
+      "bytes": 3152308,
+      "files": 7
+    },
+    ".vscode": {
+      "bytes": 2060,
+      "files": 3
+    },
+    "Assets": {
+      "bytes": 1192784046,
+      "files": 7066
+    },
+    "Build": {
+      "bytes": 0,
+      "files": 0
+    },
+    "CleanupAudit": {
+      "bytes": 1066823,
+      "files": 6
+    },
+    "Library": {
+      "bytes": 3712600585,
+      "files": 49456
+    },
+    "Logs": {
+      "bytes": 31491997,
+      "files": 708
+    },
+    "obj": {
+      "bytes": 152969,
+      "files": 3
+    },
+    "Packages": {
+      "bytes": 16183,
+      "files": 2
+    },
+    "Portfolio": {
+      "bytes": 19951857,
+      "files": 41
+    },
+    "ProjectSettings": {
+      "bytes": 67110,
+      "files": 26
+    },
+    "UserSettings": {
+      "bytes": 98421,
+      "files": 5
+    }
+  },
+  "largestCandidates": [
+    {
+      "path": "Assets/Abandoned_House/Models/Abandoned_House.glb",
+      "bytes": 12915868,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Abandoned_House/Models/Abandoned_House.blend",
+      "bytes": 12813410,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Abandoned_House/Models/Abandoned_House.blend1",
+      "bytes": 12813410,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Abandoned_House/Models/Abandoned_House.dae",
+      "bytes": 10985562,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 1
+    },
+    {
+      "path": "Assets/The Wasteland LITE/Textures/Walls_Map_1A.png",
+      "bytes": 10716009,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Textures/SBSTextures/SBS - Tiny Texture Pack - 128x128/SBS - Tiny Texture Pack - 128x128.rar",
+      "bytes": 10370626,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/The Wasteland LITE/Textures/Structures_Map_1A.png",
+      "bytes": 9997259,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 1
+    },
+    {
+      "path": "Assets/The Wasteland LITE/Textures/Walls_Map_1A(Darkened).png",
+      "bytes": 9893887,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Packs/Models/Mine/Minas/Models/Mines_Modu.dae",
+      "bytes": 9766193,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Textures/SBSTextures/SBS - Tiny Texture Pack 3 - Small/SBS - Tiny Texture Pack 3 - Small.rar",
+      "bytes": 9447727,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/JP Environmental Asset Pack/Shaders/How to set up.docx",
+      "bytes": 9232504,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/The Wasteland LITE/Textures/Metals_Map_1A.png",
+      "bytes": 8525499,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Textures/SBSTextures/SBS - Noise Texture Pack - 128x128/SBS - Noise Texture Pack - 128x128.rar",
+      "bytes": 8506713,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/Trailer_Park/Trailer_Park/Models/Trailer_Park.fbx",
+      "bytes": 7657084,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Textures/SBSTextures/SBS - Tiny Texture Pack 2 - 128x128/SBS - Tiny Texture Pack 2 - 128x128.rar",
+      "bytes": 5404441,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/SketchFabs/Bar/bar_end.fbx",
+      "bytes": 5117148,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Modles/Characters/PSX Zombie Pack 1.4/PS1_Zombie.blend",
+      "bytes": 4666604,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Modles/Characters/PSX Zombie Pack 1.4/PS1_Zombie1_Mix.blend",
+      "bytes": 4452340,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/SketchFabs/Apartments/psx-apartment (1)/textures/1(10).png",
+      "bytes": 4165478,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Textures/SBSTextures/SBS - Horror Texture Pack 128x128/SBS - Horror Texture Pack 128x128.rar",
+      "bytes": 4141431,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Abandoned_House/Textures/Telefono.jpg",
+      "bytes": 3979396,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/JP Environmental Asset Pack/Textures/Ground Grass 1/Grass 1_ambientOcclusion.png",
+      "bytes": 3978714,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/BarriersRetro/BarriersRetro/Preview.png",
+      "bytes": 3893787,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/Automatic Ammo/Texture/Automatic-Ammo-Front.png",
+      "bytes": 3569606,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Abandoned_House/Models/Abandoned_House.fbx",
+      "bytes": 3369884,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Textures/LVL11 Games - Quake-Like Textures/Level Eleven Games Sci-Fi Texture Pack v1/Render.png",
+      "bytes": 2985730,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/#Images/Main.png",
+      "bytes": 2885370,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/EnemyTypes/scissors/Animated/Material_Base_color.png",
+      "bytes": 2871129,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Might Delete Later/Sewer/Sewer/Textures/debris_03.png",
+      "bytes": 2849209,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Might Delete Later/Sewer/Sewer/Models/Sewers.dae",
+      "bytes": 2496822,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Modles/Characters/PSX Zombie Pack 1.4/FBX/PS1_Zombie.fbx",
+      "bytes": 2408972,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/#Images/50AE.png",
+      "bytes": 2394883,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/#Images/Shotgun_Ammo.png",
+      "bytes": 2355742,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/#Images/Hunting_Ammo.png",
+      "bytes": 2315181,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Packs/Models/PSXAmmoBoxes/PSXAmmoBoxes/#Images/.357.png",
+      "bytes": 2293448,
+      "status": "CANDIDATE: no reference from any scene or protected roots",
+      "references": 0
+    }
+  ],
+  "largestKept": [
+    {
+      "path": "Assets/LowpolyStreetPack/Meshes/Textures/atlas.tga",
+      "bytes": 62007507,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Resources/Japanese/NotoSansJP.ttf",
+      "bytes": 9590844,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/LowpolyStreetPack/Meshes/Textures/atlas01.png",
+      "bytes": 5028181,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Audio/2-05. 3000 Cycles (I missed you).flac",
+      "bytes": 4576430,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Packs/VFX/GabrielAguiarProductions/FreeQuickEffectsVol1/Textures/Flame02.png",
+      "bytes": 4065749,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    },
+    {
+      "path": "Assets/Art/Modles/Characters/Female Gunner 002/Import/MotionGunner.fbx",
+      "bytes": 3869628,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    },
+    {
+      "path": "Assets/EnemyTypes/scissors/Material_Base_color.png",
+      "bytes": 2871129,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Packs/Models/Mine/Minas/Models/Mines_Modu.fbx",
+      "bytes": 2614044,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    },
+    {
+      "path": "Assets/New Terrain 2.asset",
+      "bytes": 2309852,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    },
+    {
+      "path": "Assets/Art/Packs/Unity/TextMesh Pro/Resources/Fonts & Materials/LiberationSans SDF.asset",
+      "bytes": 2256862,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 5
+    },
+    {
+      "path": "Assets/Art/Animations/Secratery/idle/idle.anim",
+      "bytes": 1278761,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Prefabs/projectile.prefab",
+      "bytes": 1170104,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Modles/Characters/Female Gunner 002/Import/GLOCK/glock.blend",
+      "bytes": 1144696,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    },
+    {
+      "path": "Assets/Art/Animations/Gunner/motion_sprint.anim",
+      "bytes": 962366,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Art/Animations/Gunner/motion_walk.anim",
+      "bytes": 920419,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/LowpolyStreetPack/Meshes/StreetProps.FBX",
+      "bytes": 911424,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 80
+    },
+    {
+      "path": "Assets/Art/Animations/Zombie/Mixamo/Walk.anim",
+      "bytes": 878914,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/Scenes/Prototyping/MainGame.unity",
+      "bytes": 831671,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 0
+    },
+    {
+      "path": "Assets/Art/Animations/Secratery/movement/Walk Backwards.anim",
+      "bytes": 772607,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 1
+    },
+    {
+      "path": "Assets/EnemyTypes/scissors/Animated/ScissorsAnimated.fbx",
+      "bytes": 727788,
+      "status": "KEEP: game, settings, code or protected folder",
+      "references": 2
+    }
+  ]
+}

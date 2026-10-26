@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: be49bd627b55b2840a572231574b8d6f
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Shader scripts/Glitch/Glitch.shader
+  uploadId: 759680

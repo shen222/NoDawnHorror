@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 2f60fa99b13f57c4f84e238353b400ea
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - blurMaterial: {fileID: 2100000, guid: 3b9ce32da7f037340b26ec6fe34773d9, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Blur/CameraBlur.cs
+  uploadId: 759680

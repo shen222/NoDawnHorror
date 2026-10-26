@@ -1,0 +1,721 @@
+[
+  {
+    "path": "Assets/AmmoPickup.cs",
+    "bytes": 549,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Prefabs/AmmoPickup.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/PlayerMovement.cs",
+    "bytes": 2511,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Blinking dot/BlinkingDotEffect.cs",
+    "bytes": 971,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Blur/CameraBlur.cs",
+    "bytes": 741,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Bulged/BulgedEffect.cs",
+    "bytes": 622,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Color pulse/ColorPulseEffect.cs",
+    "bytes": 725,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Dot mask/DotMaskEffect.cs",
+    "bytes": 712,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Glitch/GlitchEffect.cs",
+    "bytes": 894,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Nausea/NauseaEffect.cs",
+    "bytes": 868,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Retro/RetroEffect.cs",
+    "bytes": 1000,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity",
+      "Assets/Scenes/Prototyping/Test/CharacterController.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/C# scripts/SwitchEffects.cs",
+    "bytes": 19994,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/Camera FX Shaders (By Mylan.T)/Camera FX Shaders (By Mylan.T) example scene.unity"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/PSXShaderKit/Demo/PSXExample_CameraMovement.cs",
+    "bytes": 689,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Prefabs/PSX Camera.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/PSXShaderKit/Demo/SpookyOrbFloat.cs",
+    "bytes": 710,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/PSXShaderKit/Demo/Demo Scene.unity"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/PSXShaderKit/Scripts/PSXPostProcessEffect.cs",
+    "bytes": 8527,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Prefabs/PSX Camera.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/PSXShaderKit/Scripts/PSXShaderManager.cs",
+    "bytes": 6561,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Prefabs/PSX Camera.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/Scripts/DropdownController.cs",
+    "bytes": 1528,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/VFXPlayerScene.unity"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/Scripts/VfxController.cs",
+    "bytes": 777,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/VFXPlayerScene.unity"
+    ],
+    "codeCallers": [
+      "Assets/Art/Packs/VFX/VFXPACK_IMPACT_WALLCOEUR_FreeVersion/Scripts/DropdownController.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsAnimationSetup.cs",
+    "bytes": 12179,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsCombatVerification.cs",
+    "bytes": 6712,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/EnemyTypes/scissors/Animated/Runtime/ScissorsAnimationPreview.cs",
+    "bytes": 1062,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/EnemyTypes/scissors/Animated/ScissorsAnimated.prefab"
+    ],
+    "codeCallers": [
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsAnimationSetup.cs",
+      "Assets/EnemyTypes/scissors/Animated/Runtime/ScissorsEnemyAI.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/EnemyTypes/scissors/Animated/Runtime/ScissorsEnemyAI.cs",
+    "bytes": 8089,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/EnemyTypes/scissors/Animated/ScissorsAnimated.prefab"
+    ],
+    "codeCallers": [
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsAnimationSetup.cs",
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsCombatVerification.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/HealthPickup.cs",
+    "bytes": 545,
+    "status": "OTHER SCENES ONLY",
+    "serializedReferences": [
+      "Assets/Prefabs/HealthPickup.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Unity/TutorialInfo/Scripts/Editor/ReadmeEditor.cs",
+    "bytes": 6677,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/Unity/TutorialInfo/Scripts/Readme.cs",
+    "bytes": 302,
+    "status": "CANDIDATE: no game/scene/code reachability found",
+    "serializedReferences": [
+      "Assets/Unity/Readme.asset"
+    ],
+    "codeCallers": [
+      "Assets/Unity/TutorialInfo/Scripts/Editor/ReadmeEditor.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Gun/bullet.cs",
+    "bytes": 4363,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/glock_magazine.prefab",
+      "Assets/Prefabs/projectile.prefab"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Gun/GunController.cs",
+      "Assets/_Scripts/Player/ShoulderAim.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Gun/GunController.cs",
+    "bytes": 6273,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/glock.prefab",
+      "Assets/Prefabs/Player.prefab"
+    ],
+    "codeCallers": [
+      "Assets/AmmoPickup.cs",
+      "Assets/_Scripts/Player/AnimationDriver.cs",
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/SurvivalHUD.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Gun/shell.cs",
+    "bytes": 682,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/bullet case.prefab"
+    ],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Player/AnimationDriver.cs",
+    "bytes": 1947,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/Character Controler.prefab",
+      "Assets/Prefabs/Player.prefab"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Player/TankControls.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Player/Health Manager.cs",
+    "bytes": 2891,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/Player.prefab"
+    ],
+    "codeCallers": [
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsAnimationSetup.cs",
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsCombatVerification.cs",
+      "Assets/EnemyTypes/scissors/Animated/Runtime/ScissorsEnemyAI.cs",
+      "Assets/HealthPickup.cs",
+      "Assets/_Scripts/Gun/GunController.cs",
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs",
+      "Assets/_Scripts/Systems/SurvivalHUD.cs",
+      "Assets/_Scripts/Zombie/ZombieAI.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Player/MovementState.cs",
+    "bytes": 1587,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/Character Controler.prefab",
+      "Assets/Prefabs/Player.prefab"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Player/AnimationDriver.cs",
+      "Assets/_Scripts/Player/TankControls.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Player/ShoulderAim.cs",
+    "bytes": 8870,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [],
+    "codeCallers": [
+      "Assets/_Scripts/Gun/GunController.cs",
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/CameraObstacleAvoidance.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Player/TankControls.cs",
+    "bytes": 6418,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/Character Controler.prefab",
+      "Assets/Prefabs/Player.prefab",
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Gun/GunController.cs",
+      "Assets/_Scripts/Player/AnimationDriver.cs",
+      "Assets/_Scripts/Player/MovementState.cs",
+      "Assets/_Scripts/Player/ShoulderAim.cs",
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/CameraZoneValidation.cs",
+      "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/DialogueSetup.cs",
+      "Assets/_Scripts/Systems/Editor/ExplorationCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+      "Assets/_Scripts/Systems/StoryFocusShot.cs",
+      "Assets/_Scripts/Systems/SurvivalHUD.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/CameraObstacleAvoidance.cs",
+    "bytes": 7356,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/Editor/CameraObstacleValidation.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/CamSwitcher.cs",
+    "bytes": 6113,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity",
+      "Assets/Scenes/Prototyping/Test/Camera System.unity",
+      "Assets/Scenes/Prototyping/Test/Lookcorner 1.unity",
+      "Assets/Scenes/Prototyping/Test/OpenWorld.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/CameraZoneValidation.cs",
+      "Assets/_Scripts/Systems/Editor/CameraZoneValidation.cs",
+      "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/ExplorationCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/ExplorationCameraSetup.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/DialogueInteractable.cs",
+    "bytes": 1310,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/Editor/DialogueSetup.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/DialogueSequence.cs",
+    "bytes": 411,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Resources/Dialogue/Arrival.asset",
+      "Assets/Resources/Dialogue/DeadmanDiscovery.asset",
+      "Assets/Resources/Dialogue/Inspect.asset",
+      "Assets/Resources/Dialogue/Villager.asset"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/DialogueInteractable.cs",
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/DialogueSetup.cs",
+      "Assets/_Scripts/Systems/Editor/DialogueSetup.cs",
+      "Assets/_Scripts/Systems/Editor/JapaneseSetup.cs",
+      "Assets/_Scripts/Systems/Editor/JapaneseSetup.cs",
+      "Assets/_Scripts/Systems/StoryFocusShot.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/DialogueSystem.cs",
+    "bytes": 8935,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Player/ShoulderAim.cs",
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/DialogueInteractable.cs",
+      "Assets/_Scripts/Systems/Editor/DialogueSetup.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs"
+    ],
+    "autoInitialize": true
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+    "bytes": 5141,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+    "bytes": 8553,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/CameraObstacleValidation.cs",
+    "bytes": 6126,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/CameraZoneValidation.cs",
+    "bytes": 5259,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+    "bytes": 12069,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/DialogueSetup.cs",
+    "bytes": 4467,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/ExplorationCameraSetup.cs",
+    "bytes": 5999,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/JapaneseSetup.cs",
+    "bytes": 4270,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/ProjectWarningRepair.cs",
+    "bytes": 5751,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/RetroScreenSetup.cs",
+    "bytes": 905,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/StoryCameraSetup.cs",
+    "bytes": 5389,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+    "bytes": 6420,
+    "status": "EDITOR TOOL",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+    "bytes": 10457,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/CameraZoneValidation.cs",
+      "Assets/_Scripts/Systems/Editor/CinematicCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/ExplorationCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs",
+      "Assets/_Scripts/Systems/StoryFocusShot.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/JapaneseText.cs",
+    "bytes": 1095,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/SurvivalHUD.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/NpcIdleAnimation.cs",
+    "bytes": 2021,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/DialogueInteractable.cs",
+      "Assets/_Scripts/Systems/Editor/ProjectWarningRepair.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/RetroScreenEffect.cs",
+    "bytes": 3470,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [],
+    "autoInitialize": true
+  },
+  {
+    "path": "Assets/_Scripts/Systems/RetroScreenSettings.cs",
+    "bytes": 699,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Resources/RetroScreenSettings.asset"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/Editor/RetroScreenSetup.cs",
+      "Assets/_Scripts/Systems/RetroScreenEffect.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/StoryCameraDirector.cs",
+    "bytes": 8018,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [],
+    "codeCallers": [
+      "Assets/_Scripts/Player/ShoulderAim.cs",
+      "Assets/_Scripts/Player/TankControls.cs",
+      "Assets/_Scripts/Systems/DialogueSystem.cs",
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraDiagnostics.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/ExplorationCameraRig.cs",
+      "Assets/_Scripts/Systems/StoryFocusShot.cs"
+    ],
+    "autoInitialize": true
+  },
+  {
+    "path": "Assets/_Scripts/Systems/StoryFocusShot.cs",
+    "bytes": 3494,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Scenes/Prototyping/MainGame.unity"
+    ],
+    "codeCallers": [
+      "Assets/_Scripts/Systems/Editor/AlleywayCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraSetup.cs",
+      "Assets/_Scripts/Systems/Editor/StoryCameraValidation.cs",
+      "Assets/_Scripts/Systems/StoryCameraDirector.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Systems/SurvivalHUD.cs",
+    "bytes": 10549,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": true
+  },
+  {
+    "path": "Assets/_Scripts/Zombie/ZombieAI.cs",
+    "bytes": 8555,
+    "status": "KEEP: main game or runtime code dependency",
+    "serializedReferences": [
+      "Assets/Prefabs/PS1_Zombie.prefab"
+    ],
+    "codeCallers": [
+      "Assets/EnemyTypes/scissors/Animated/Editor/ScissorsCombatVerification.cs",
+      "Assets/EnemyTypes/scissors/Animated/Runtime/ScissorsEnemyAI.cs",
+      "Assets/_Scripts/Gun/bullet.cs",
+      "Assets/_Scripts/Player/ShoulderAim.cs"
+    ],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Zombie/ZombieAnimator.cs",
+    "bytes": 1,
+    "status": "CANDIDATE: no game/scene/code reachability found",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  },
+  {
+    "path": "Assets/_Scripts/Zombie/ZombieState.cs",
+    "bytes": 516,
+    "status": "CANDIDATE: no game/scene/code reachability found",
+    "serializedReferences": [],
+    "codeCallers": [],
+    "autoInitialize": false
+  }
+]

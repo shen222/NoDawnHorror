@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 29d1935545f30964593592f64216c8f0
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Shader scripts/NauseaEffect/NauseaEffect.shader
+  uploadId: 759680

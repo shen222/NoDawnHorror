@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 5b8161c7df1e7ba459a40d14130d78ed
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Shader scripts/Blur/Blur.shader
+  uploadId: 759680

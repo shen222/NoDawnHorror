@@ -1,0 +1,80 @@
+import fs from 'node:fs/promises';
+import path from 'node:path';
+import {Presentation,PresentationFile} from 'file:///C:/Users/snlsh/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs';
+const root=path.resolve('Portfolio'),build=path.join(root,'work/slides'),out=path.join(root,'slides');
+process.env.RUNTIME_NODE_MODULES='C:/Users/snlsh/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules';
+await fs.mkdir(build,{recursive:true});await fs.mkdir(out,{recursive:true});
+const p=Presentation.create({slideSize:{width:1280,height:720}});
+const bg='#131C1E',fg='#F1F3EF',muted='#B5C4BF',accent='#A6D5BD';
+function text(s,t,x,y,w,h,size=28,color=fg,bold=false){let a=s.shapes.add({geometry:'textbox',position:{left:x,top:y,width:w,height:h},fill:'none',line:{fill:'none',width:0}});a.text=t;a.text.style={typeface:'Meiryo',fontSize:size,color,bold};return a;}
+function slide(title){let s=p.slides.add();s.background.fill=bg;text(s,title,64,48,1150,100,42,fg,true);text(s,String(p.slides.items.length).padStart(2,'0'),1160,668,60,28,18,muted);return s;}
+function section(s,label,body,y=170){text(s,label,68,y,1100,45,29,accent,true);text(s,body,68,y+57,1110,135,27);}
+async function image(s,file,x,y,w,h){let b=await fs.readFile(path.join(root,'images',file));s.images.add({blob:b.buffer.slice(b.byteOffset,b.byteOffset+b.byteLength),contentType:'image/png',alt:file==='shooting-before.png'?'変更前の固定視点での射撃':'変更後の肩越し視点と照準',fit:'contain',position:{left:x,top:y,width:w,height:h}});}
+let s=slide('サバイバルホラーゲーム');
+text(s,'ゲームプログラマー ポートフォリオ',68,210,1100,60,35,accent);
+text(s,'リヤナゲ　シェナル　ナディジャ',68,330,1100,60,36);
+text(s,'個人制作　制作中\n制作期間 8か月',68,460,1000,110,27,muted);
+s=slide('学校での制作と自分の担当');
+section(s,'学校のUnityの授業で制作','自由にゲームを作る課題として始めました。\n学期の終わりに先生に作品を見せます。',155);
+section(s,'制作しながらC#を勉強','プレイヤー操作とゾンビAIのスクリプトは自分で書きました。\nバグや分からないことは、先生に相談して教えてもらいました。',375);
+s=slide('なぜSILENT HILLのようなゲームを作るのか');
+section(s,'映画のようなカメラが好き','特に『SILENT HILL 1』のカメラが印象に残っています。\nプレイヤーに合わせて動き、場所によって向きが変わるところが好きです。',155);
+section(s,'カメラでこわさを伝える方法を学びたい','カメラの位置や動きで、なぜ不安になるのかを考えたいです。\n物語や雰囲気を伝え、遊んだ人の心に残るゲームを目指しています。',380);
+s=slide('好きなカメラの動きと制作の目標');
+section(s,'止まっているカメラと動くカメラ','『SILENT HILL 1』では、場所によってカメラが移動したり回ったりします。\n映画のドリー撮影のような、なめらかな動きにも興味があります。',155);
+section(s,'同じ仕組みを作るだけで終わらせない','なぜその場所から映すのか、なぜ不安になるのかを考えたいです。\n今は場所ごとの切替を作り、これから動きや見せ方を試していきます。',380);
+s=slide('Cinemachineを使ったカメラ');
+section(s,'場所によってカメラを切り替える','Trigger Colliderでプレイヤーの出入りを調べます。\n入ると対象カメラのPriorityを1、出ると0に戻します。',155);
+section(s,'カメラが変わっても同じ移動操作','transform.forwardを使い、キャラクターの前へ進みます。\nこれからは、なめらかなカメラの動きや見せ方も試したいです。',380);
+s=slide('カメラ切替のプログラム');
+section(s,'CamSwitcherの役割','OnTriggerEnterとOnTriggerExitで出入りを調べます。\nCompareTag("Player")で、プレイヤーだけに反応させます。',155);
+section(s,'置いてあるカメラを選ぶ','入った時はactiveCamera.Priority = 1、出た時は0に戻します。\nエリアが重なる場所で、正しいカメラを選べるか確認したいです。',380);
+s=slide('プレイヤー操作とアニメーション');
+section(s,'移動とクイックターン','前後のキーで歩き、左右のキーで向きを変えます。\nShiftで走り、Qで180度回ります。回転にはQuaternion.Slerpを使います。',155);
+section(s,'役割を分けたスクリプト','TankControlsで操作、MovementStateで状態を管理します。\nAnimationDriverからAnimatorへ状態を伝えます。',380);
+s=slide('移動速度とクイックターンの作り方');
+section(s,'場面に合わせた移動','CharacterController.Moveで移動し、Time.deltaTimeで移動量を計算します。\nコードの初期設定は、走る速さが1.5倍、後ろに下がる速さが0.6倍です。',155);
+section(s,'180度回る間の処理','Coroutineで少しずつ回転し、その間は通常の移動を止めます。\n終わった後は待ち時間を入れ、続けて何度も使えないようにしています。',380);
+s=slide('友人の意見から変えた射撃');
+text(s,'変更前',64,155,540,45,28,accent,true);text(s,'変更後',666,155,540,45,28,accent,true);
+await image(s,'shooting-before.png',64,215,550,310);await image(s,'shooting-after.png',666,215,550,310);
+text(s,'遠くから見るカメラ\nキーで左右や上下を狙う',64,550,550,100,25);
+text(s,'肩越しの三人称カメラ\nマウスで狙い、中央に照準を表示',666,550,550,100,25);
+s.speakerNotes.text='ユーザー提供の変更前と変更後のゲーム画面。友人から「操作が難しい」という意見を受け、狙いやすくするために変更。変更前 https://youtu.be/Ea-cbIwZtK4 変更後 https://youtu.be/3X-1d06Ikg0';
+s=slide('友人に遊んでもらって分かったこと');
+section(s,'「操作が難しい」という意見','自分では遊べても、初めて遊ぶ人には難しいことがあると分かりました。\nそこで、銃で狙いやすくするために、構え中のカメラと操作を変えました。',155);
+section(s,'探索の雰囲気と戦闘の操作','歩いている時は、場所によって変わるカメラを使います。\n構えた時だけ肩越しのカメラにし、今後も使いやすさを確認します。',380);
+s=slide('マウスで狙う仕組み');
+section(s,'構えた時だけカメラを変える','Spaceで構えると、ShoulderAimがカメラを動かします。\nCinemachineBrainを一度止め、構えをやめると元に戻します。',155);
+section(s,'照準と壁への対応','Mouse XとMouse Yで向きを変え、画面中央からRayを出します。\nSphereCastで壁を調べ、壁が近い時はカメラを近づけます。',380);
+s=slide('構えの開始と終了の処理');
+section(s,'カメラとカーソルの設定を保存','構え始めに元の設定を保存し、カーソルを固定して見えなくします。\n構え中は歩けません。上下の角度には限度をつけています。',155);
+section(s,'急に視点が変わらないようにする','カメラの位置、回転、画角を少しずつ変えます。\n構えをやめるとカメラとカーソルの設定を戻します。',380);
+s=slide('ゾンビAIとほかの機能');
+section(s,'敵がプレイヤーを追いかける','距離と角度でプレイヤーを調べ、NavMeshAgentで追いかけます。\n見失うと最後に見た場所へ向かい、近づくと攻撃します。',155);
+section(s,'戦闘と画面の表示','射撃、リロード、体力、回復、弾を拾う機能があります。\n体力や弾の数を表示し、死亡した後にやり直せます。',380);
+s=slide('射撃と敵の攻撃の仕組み');
+section(s,'Gunクラスで弾を管理','弾の数、撃つ間隔、リロード時間を管理します。\n撃つ時に音やアニメーション、光のエフェクト、薬莢も出します。',155);
+section(s,'敵が攻撃する時の確認','敵は攻撃を始めてから少し待ち、まだプレイヤーが近いか調べます。\n近くにいる時にダメージを与えます。壁がある時の判定は今後の課題です。',380);
+s=slide('使っているツールと学んだこと');
+section(s,'開発環境','Unity 6 6000.0.60f1、C#、Cinemachine 3.1.5を使っています。\n描画はURP 17.0.4、敵の移動はAI Navigation 2.0.9を使います。',155);
+section(s,'一つずつ作りながら勉強','操作や状態、武器、体力など、役割ごとにプログラムを分けています。\n授業で先生に相談し、友人の意見も聞きながら制作を続けています。',380);
+s=slide('使った素材とAIの利用');
+section(s,'素材','キャラクターなどの素材はSketchfabを使いました。\nアニメーションはMixamoを使っています。',155);
+section(s,'生成AIを使ったところ','会話システムは生成AIが作ったコードを使っています。\nプレイヤー操作とゾンビAIのスクリプトは自分で書きました。',380);
+s=slide('これから作りたいこと');
+text(s,'メインメニューを作る\n\nレベルデザインを見直し、家のステージを直す\n\n空を飛ぶ敵を作る',68,175,1100,320,32);
+text(s,'友人にまた遊んでもらい、操作の使いやすさも確認します。',68,565,1100,65,26,accent);
+s=slide('プレイ動画とソースコード');
+text(s,'変更前の動画\nhttps://youtu.be/Ea-cbIwZtK4\n\n変更後の動画\nhttps://youtu.be/3X-1d06Ikg0',68,160,1100,310,28);
+text(s,'ソースコード  Google Drive',68,495,1100,45,28,accent,true);
+text(s,'https://drive.google.com/file/d/\n1zbBjax3gF_yrwC0BT0VXfnX9k4P__7d7/view',68,550,1100,90,23);
+s.speakerNotes.text='ソースコード https://drive.google.com/file/d/1zbBjax3gF_yrwC0BT0VXfnX9k4P__7d7/view?usp=sharing';
+for(let i=0;i<p.slides.items.length;i++){let b=await p.export({slide:p.slides.items[i],format:'png',scale:1});await fs.writeFile(path.join(build,`slide-${i+1}.png`),new Uint8Array(await b.arrayBuffer()));}
+const candidate=path.join(build,'candidate.pptx');await(await PresentationFile.exportPptx(p)).save(candidate);
+const {finalizePresentation}=await import('file:///C:/Users/snlsh/.codex/plugins/cache/openai-primary-runtime/presentations/26.1013.11914/skills/presentations/container_tools/artifact_tool_utils.mjs');
+const skill='C:/Users/snlsh/.codex/plugins/cache/openai-primary-runtime/presentations/26.1013.11914/skills/presentations';
+await finalizePresentation({workspaceDir:root,candidatePath:candidate,finalPath:path.join(out,'Game_Portfolio_JP_Detailed.pptx'),pythonExecutable:'C:/Users/snlsh/.cache/codex-runtimes/codex-primary-runtime/dependencies/python/python.exe',integrityValidatorPath:path.join(skill,'container_tools/inspect_presentation_package_integrity.py'),layoutValidatorPath:path.join(skill,'container_tools/inspect_presentation_layout_geometry.py'),layoutArgs:['--expected-slide-size-emu','12192000,6858000','--validate-heading-fit'],fontPolicy:{basis:'design',families:['Meiryo']},verifyArtifactToolImport:true,receiptPath:path.join(build,'validation-detailed.json')});
+console.log('Created',p.slides.items.length,'slides');
+
+

@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 976df26ba5339164690579dbb9524c87
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Materials/shader materials/Color
+    pulse/Color pulse matrrial.mat
+  uploadId: 759680

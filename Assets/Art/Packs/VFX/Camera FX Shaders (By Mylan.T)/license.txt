@@ -1,0 +1,21 @@
+Version: 1.0
+Date: [25/05/2025]
+
+1. Grant of License
+This license grants the purchaser of "[Camera FX Shaders (By Mylan.T)]" (hereafter referred to as "the Asset") the following rights:
+1.1. The right to use the Asset in personal or commercial projects.
+1.2. The right to modify the Asset for use in the purchaser's projects.
+
+2. Restrictions
+The purchaser is prohibited from:
+2.1. Reselling, sublicensing, or redistributing the Asset in its original or unmodified form.
+2.2. Using the Asset in a manner that violates Unity’s Asset Store End User License Agreement (EULA).
+2.3. Using third-party components included in the Asset outside of this package.
+
+3. Liability Disclaimer
+The Asset is provided "as is," without warranty of any kind. The author shall not be held liable for any damages resulting from the use of the Asset.
+
+4. Contact Information
+If you have any questions about this license, please contact:
+Email: [bymylan.t@gmail.com]
+Website: [https://sketchfab.com/By_MylanT]

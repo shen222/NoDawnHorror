@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4f793406b79a724998ab049b25078d6, type: 3}
+  m_Name: Inspect
+  m_EditorClassIdentifier: 
+  lockPlayer: 0
+  autoAdvance: 1
+  lines:
+  - speaker: 
+    text: "\u9759\u304B\u3059\u304E\u308B\u2026\u2026\u307F\u3093\u306A\u3069\u3053\u306B\u3044\u308B\u306E\uFF1F"
+    duration: 4

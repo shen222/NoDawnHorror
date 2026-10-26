@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: 9bd7ca8ac854dd14dbde8dc90c49bf86
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - glitchMaterial: {fileID: 2100000, guid: b4ea92d10570a92408e89405cadf5d45, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Glitch/GlitchEffect.cs
+  uploadId: 759680

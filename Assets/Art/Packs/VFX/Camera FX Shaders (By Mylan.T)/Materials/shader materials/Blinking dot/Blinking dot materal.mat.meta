@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: e74f8d8e1ee865b468f7a59f03328a8c
+NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 2100000
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Materials/shader materials/Blinking
+    dot/Blinking dot materal.mat
+  uploadId: 759680

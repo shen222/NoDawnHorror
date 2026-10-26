@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+guid: 77267a0496f9d9b419a7f85d917f3112
+ShaderImporter:
+  externalObjects: {}
+  defaultTextures: []
+  nonModifiableTextures: []
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/Shader scripts/BlinkingDotEffect/CRT_DotMask.shader
+  uploadId: 759680

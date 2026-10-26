@@ -1,0 +1,19 @@
+fileFormatVersion: 2
+guid: a4f7daaf78c62f84c835df8a8fd2bf15
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences:
+  - bulgedMaterial: {fileID: 2100000, guid: 85b5bf94b5a55f34595cda547e8e483d, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 308015
+  packageName: Camera FX Shaders Pack
+  packageVersion: 1.0.0
+  assetPath: Assets/Camera FX Shaders (By Mylan.T)/C# scripts/Shader C sharp scripts/Bulged/BulgedEffect.cs
+  uploadId: 759680
