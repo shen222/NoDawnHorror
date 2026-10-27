@@ -136,9 +136,10 @@ public sealed class ExplorationCameraRig : MonoBehaviour
         }
         else { pendingChange = false; pendingTime = 0; }
         if (CurrentZone != null) CurrentZone.UpdateMovingCamera(player.transform, false);
+        player.SetShootingZone(CurrentZone);
         if (collision != null)
         {
-            collision.fixedShot = !StoryCameraDirector.IsPlaying && !player.IsAiming &&
+            collision.fixedShot = !StoryCameraDirector.IsPlaying && (!player.IsAiming || player.CurrentShootingMode == ShootingMode.Classic) &&
                 (CurrentZone != null ? CurrentZone.mode == CamSwitcher.CameraMode.Fixed :
                     !followOutsideZones && (lastFixedCamera != null || defaultFixedCamera != null));
             collision.preserveAuthoredPosition = StoryCameraDirector.IsPlaying ||
@@ -150,6 +151,7 @@ public sealed class ExplorationCameraRig : MonoBehaviour
     private void SelectZone(CamSwitcher zone)
     {
         CurrentZone = zone;
+        if (player != null) player.SetShootingZone(zone);
         if (zone != null) zone.BeginShot();
         if (defaultFixedCamera != null) defaultFixedCamera.Priority = 0;
         if (lastFixedCamera != null) lastFixedCamera.Priority = 0;
@@ -193,5 +195,6 @@ public sealed class ExplorationCameraRig : MonoBehaviour
         return !followOutsideZones && (lastFixedCamera != null || defaultFixedCamera != null);
     }
 
+    private void OnDisable() { if (player != null) player.SetShootingZone(null); }
     private void OnDestroy() { if (brain != null && initialized) brain.DefaultBlend = oldBlend; }
 }

@@ -160,3 +160,56 @@ Selected shots display a cyan camera path, yellow approach rings, and a magenta
 focus marker in Scene view with Gizmos enabled. Run **Tools > Cameras > Validate
 Cinematic Cameras** to check approach distance, endpoints, reverse travel,
 curved motion, object focus, lens changes, and legacy movement.
+
+## Choosing shooting style per camera zone
+
+Select a camera trigger zone, such as **TriggerZone alleyway**, in the Hierarchy.
+On its **Cam Switcher** component, set **Shooting Mode**:
+
+- **Use Player Default** uses **Default Shooting Mode** on the player's
+  **Tank Controls** component. Existing zones use this option; the player default
+  is Shoulder Aim.
+- **Classic** keeps the exploration camera in control while the player aims,
+  hides the crosshair, and fires along the gun barrel. The zone's Fixed, Moving,
+  Follow, or Cinematic camera behavior is preserved.
+- **Shoulder Aim** uses the shoulder camera, mouse targeting, and crosshair.
+
+Save the scene after choosing a mode outside Play mode. Entering a zone applies
+its setting automatically. Overlapping zones use the same winner as camera
+selection (Zone Priority, then the newest entry at equal priority). Leaving all
+zones restores the player's default shooting mode, even when exploration retains
+the last fixed camera. Mode changes preserve a raised gun; switching to Classic
+immediately releases the shoulder camera and cancels its pending return blend.
+
+**Classic controls:** Space toggles the aiming stance. While aiming, A/D (or
+Left/Right) turns the character, and W/S (or Up/Down) raises/lowers the aim within
+the player's Classic Aim Pitch Limit. The player stands in place. Left click or
+J fires; R or K reloads. Shooting remains blocked by the existing pause, dialogue,
+story-camera, and death controls. Classic aiming uses the existing AimAngle
+animation parameter to pose the gun; it does not add automatic target locking.
+
+**Tools > Combat > Validate Zone Shooting Modes (Play Mode)** runs isolated checks
+for mode inheritance, zone overlap and exit, classic controls, camera/cursor
+handoffs, crosshair visibility, and actual projectile directions. It restores
+its temporary camera and cursor state when finished. Results are saved to
+`Logs/Combat/shooting-modes.txt`.
+
+### Classic laser sight
+
+Classic aiming now shows a red laser from the muzzle, with a small impact dot on
+the nearest wall or enemy. It follows the animated barrel direction, including
+vertical aim. Player colliders, projectiles, and non-combat trigger volumes are
+ignored; enemy trigger hitboxes can stop the sight. A ray into open space ends
+at the configured range without displaying a floating dot.
+
+The sight appears while the gun is raised in Classic mode. It hides when the
+gun is lowered, during reloading, pause, dialogue, story shots, death, or Shoulder
+Aim. It is added automatically to existing guns at runtime. To customize its
+color, beam width, dot size, or maximum distance permanently, add
+**Classic Laser Sight** to the same prefab object as **Gun** and edit its fields.
+Defaults are red, 30 m range, 0.015 m beam width, and a 0.045 m impact dot.
+
+The original gun's long green cylinder stays hidden; the new sight uses a
+depth-tested beam that stops at scenery. Its unlit shader is stored in Resources
+so it is included in builds. The combat validation now includes laser behavior
+and a rendered visibility check; its preview is `Logs/Combat/classic-laser.png`.

@@ -6,10 +6,14 @@ public class CamSwitcher : MonoBehaviour
 {
     public enum CameraMode { Fixed, Moving, Follow, Cinematic }
     public enum ProgressMode { AlongPath, ApproachMarker }
+    public enum ShootingModeOverride { UsePlayerDefault = 0, Classic = 1, ShoulderAim = 2 }
     internal static readonly List<CamSwitcher> Zones = new List<CamSwitcher>();
     public Transform player;
     public CinemachineCamera activeCamera;
     public CameraMode mode;
+    [Header("Shooting")]
+    [Tooltip("Classic keeps this exploration camera while aiming, without a crosshair. Shoulder Aim uses mouse aiming. Use Player Default inherits TankControls.")]
+    public ShootingModeOverride shootingMode = ShootingModeOverride.UsePlayerDefault;
     public int zonePriority = 10;
     [Min(0)] public float exitDelay = 0.25f;
     [Tooltip("Switch immediately when this zone wins camera selection, bypassing blend and shot delays. Overlapping zones still obey Zone Priority.")]

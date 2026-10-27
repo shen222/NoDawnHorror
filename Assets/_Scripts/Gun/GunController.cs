@@ -41,6 +41,7 @@ public class Gun : MonoBehaviour
     {
         currentAmmo = magSize;
         ownerHealth = GetComponentInParent<HealthManager>();
+        if (GetComponent<ClassicLaserSight>() == null) gameObject.AddComponent<ClassicLaserSight>();
         // The original gun prefab includes a visible green laser guide mesh.
         // Keep the muzzle transform for firing, but hide its guide in gameplay.
         if (firePoint != null)
@@ -96,7 +97,9 @@ public class Gun : MonoBehaviour
 
         Quaternion shotRotation = firePoint.rotation;
         var shoulderAim = GetComponentInParent<ShoulderAim>();
-        if (shoulderAim != null && shoulderAim.IsActive)
+        var aimingPlayer = GetComponentInParent<TankControls>();
+        if (shoulderAim != null && shoulderAim.IsActive &&
+            (aimingPlayer == null || aimingPlayer.CurrentShootingMode == ShootingMode.ShoulderAim))
         {
             Vector3 direction = shoulderAim.GetAimPoint() - firePoint.position;
             if (direction.sqrMagnitude > 0.0001f) shotRotation = Quaternion.LookRotation(direction);

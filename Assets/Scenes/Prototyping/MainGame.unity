@@ -1946,6 +1946,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1155295695}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 0
@@ -2810,6 +2811,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1042058222}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 0
@@ -8646,6 +8648,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1455598841}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 1
@@ -9168,6 +9171,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 187869006}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 1
@@ -9922,6 +9926,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1761795722}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 0
@@ -11691,6 +11696,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1161221584}
   mode: 0
+  shootingMode: 1
   zonePriority: 20
   exitDelay: 0.5
   cutOnEnter: 1
@@ -11831,6 +11837,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1251544636}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 1
@@ -18474,6 +18481,7 @@ MonoBehaviour:
   player: {fileID: 468265294}
   activeCamera: {fileID: 1761795722}
   mode: 0
+  shootingMode: 0
   zonePriority: 10
   exitDelay: 0.25
   cutOnEnter: 0

@@ -13,6 +13,32 @@ public class TankControls : MonoBehaviour
     [SerializeField] private Gun gun;
     public Gun EquippedGun => gun;
 
+    [Header("Shooting")]
+    [Tooltip("Used outside camera zones and by zones set to Use Player Default.")]
+    public ShootingMode defaultShootingMode = ShootingMode.ShoulderAim;
+    [Range(1, 80)] public float classicAimPitchLimit = 45f;
+    public ShootingMode CurrentShootingMode
+    {
+        get
+        {
+            if (shootingZone != null && shootingZone.isActiveAndEnabled)
+            {
+                if (shootingZone.shootingMode == CamSwitcher.ShootingModeOverride.Classic) return ShootingMode.Classic;
+                if (shootingZone.shootingMode == CamSwitcher.ShootingModeOverride.ShoulderAim) return ShootingMode.ShoulderAim;
+            }
+            return defaultShootingMode;
+        }
+    }
+    private CamSwitcher shootingZone;
+    private float aimHorizontalInput;
+
+    internal void SetShootingZone(CamSwitcher zone)
+    {
+        shootingZone = zone;
+        if (CurrentShootingMode == ShootingMode.Classic && shoulderAim != null)
+            shoulderAim.ReturnToExplorationImmediately();
+    }
+
     [Header("Movement Settings")]
     public float speed = 10f;
     public float turnSpeed = 100f;
@@ -81,8 +107,14 @@ public class TankControls : MonoBehaviour
             IsAiming = !IsAiming;
 
         AimVerticalInput = 0f;
+        aimHorizontalInput = 0f;
         if (IsAiming)
         {
+            if (CurrentShootingMode == ShootingMode.Classic)
+            {
+                aimHorizontalInput = HorizontalInput;
+                AimVerticalInput = VerticalInput;
+            }
             VerticalInput = HorizontalInput = 0f;
             IsSprinting = false;
         }
@@ -127,8 +159,16 @@ public class TankControls : MonoBehaviour
     {
         if (IsAiming)
         {
-            if (!shoulderAim.UpdateAim()) { IsAiming = false; return; }
-            AimAngle = -shoulderAim.Pitch;
+            if (CurrentShootingMode == ShootingMode.Classic)
+            {
+                shoulderAim.ReturnToExplorationImmediately();
+                UpdateClassicAim(aimHorizontalInput, AimVerticalInput, Time.deltaTime);
+            }
+            else
+            {
+                if (!shoulderAim.UpdateAim()) { IsAiming = false; return; }
+                AimAngle = -shoulderAim.Pitch;
+            }
 
             if (gun != null && (Input.GetKeyDown(KeyCode.J) || Input.GetMouseButtonDown(0)))
             {
@@ -143,6 +183,14 @@ public class TankControls : MonoBehaviour
 
         }
         else shoulderAim.EndAim();
+    }
+
+    internal void UpdateClassicAim(float horizontal, float vertical, float deltaTime)
+    {
+        // Turning is relative to the character, independent of the authored camera.
+        transform.Rotate(0, horizontal * turnSpeed * deltaTime, 0);
+        AimAngle = Mathf.Clamp(AimAngle + vertical * aimAngleSpeed * deltaTime,
+            -classicAimPitchLimit, classicAimPitchLimit);
     }
 
     private void OnDisable()

@@ -33,7 +33,12 @@ public sealed class ShoulderAim : MonoBehaviour
 
     public bool UpdateAim()
     {
-        if (!Application.isFocused) { EndAim(); return false; }
+        return UpdateAim(new Vector2(Input.GetAxisRaw("Mouse X"), Input.GetAxisRaw("Mouse Y")), Application.isFocused);
+    }
+
+    internal bool UpdateAim(Vector2 mouseDelta, bool focused)
+    {
+        if (!focused) { EndAim(); return false; }
         if (!active)
         {
             bool wasReturning = returning;
@@ -63,8 +68,8 @@ public sealed class ShoulderAim : MonoBehaviour
         }
         else
         {
-            yaw += Input.GetAxisRaw("Mouse X") * mouseSensitivity;
-            Pitch = Mathf.Clamp(Pitch + Input.GetAxisRaw("Mouse Y") * mouseSensitivity * (invertY ? 1 : -1), -pitchLimit, pitchLimit);
+            yaw += mouseDelta.x * mouseSensitivity;
+            Pitch = Mathf.Clamp(Pitch + mouseDelta.y * mouseSensitivity * (invertY ? 1 : -1), -pitchLimit, pitchLimit);
         }
         transform.rotation = Quaternion.Euler(0, yaw, 0);
         PositionCamera();
@@ -87,7 +92,7 @@ public sealed class ShoulderAim : MonoBehaviour
             return;
         }
         if (!active) return;
-        if (controls == null || !controls.isActiveAndEnabled || !controls.IsAiming || Time.timeScale == 0 || DialogueSystem.BlocksPlayer || StoryCameraDirector.IsPlaying)
+        if (controls == null || !controls.isActiveAndEnabled || !controls.IsAiming || controls.CurrentShootingMode != ShootingMode.ShoulderAim || Time.timeScale == 0 || DialogueSystem.BlocksPlayer || StoryCameraDirector.IsPlaying)
         { EndAim(); return; }
         blendElapsed += Time.unscaledDeltaTime;
         PositionCamera();
@@ -147,8 +152,18 @@ public sealed class ShoulderAim : MonoBehaviour
 
     public void CancelForStoryShot()
     {
+        ReturnToExplorationImmediately();
+    }
+
+    public void ReturnToExplorationImmediately()
+    {
         EndAim();
         returning = false;
+        if (view != null && (brain == null || !brainWasEnabled))
+        {
+            view.transform.SetPositionAndRotation(oldPosition, oldRotation);
+            view.fieldOfView = oldFov;
+        }
     }
 
     public void EndAim()
