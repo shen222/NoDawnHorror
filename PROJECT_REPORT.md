@@ -57,3 +57,11 @@ Dates use Asia/Tokyo.
 - The sight hides when the player lowers the gun, reloads, pauses, dies, enters dialogue or a story shot, or switches to Shoulder Aim. Existing weapons receive the component automatically at runtime. The original long green guide cylinder remains hidden. Color, width, range, and dot size can be customized with the Classic Laser Sight component.
 - Affected files: `Assets/_Scripts/Gun/ClassicLaserSight.cs`, `Assets/Resources/ClassicLaserSight.shader`, their Unity metadata, `Assets/_Scripts/Gun/GunController.cs`, `Assets/_Scripts/Systems/Editor/ShootingModeValidation.cs`, and `CAMERA_SHOTS.md`.
 - Verification: Unity editor compilation passed and all 39 controlled Play-mode integration checks passed, including the previous shooting-mode checks plus laser creation, muzzle alignment/range, wall and enemy trigger detection, owner/non-combat-trigger filtering, reload/pause/lowered-gun hiding, and mode switching. A rendered visibility check passed, and `Logs/Combat/classic-laser.png` was visually reviewed. Results: `Logs/Combat/shooting-modes.txt`. Unity was returned to Edit mode. Standalone builds and extended manual gameplay were not tested.
+
+## 2026-11-02 — Keep snow outside sheltered areas
+
+- The existing snowEffect now receives roof protection automatically when its scene loads. Snowflakes disappear on solid scenery instead of resting on or travelling through it, and newly spawned flakes beneath overhead colliders are removed.
+- Uses downward roof checks to support single-sided roof meshes, excludes Player and Enemy layers and trigger volumes, and only probes newly emitted particles to limit ongoing physics work. Roofs need solid colliders to provide shelter.
+- Affected files: Assets/_Scripts/Systems/SnowShelter.cs.
+- Verification: scene snowEffect and existing collision settings inspected; the new script compiled successfully against the installed Unity 6000.0.60f1 assemblies. Visual indoor/outdoor testing has not yet been performed.
+
