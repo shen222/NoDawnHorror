@@ -65,3 +65,34 @@ Dates use Asia/Tokyo.
 - Affected files: Assets/_Scripts/Systems/SnowShelter.cs.
 - Verification: scene snowEffect and existing collision settings inspected; the new script compiled successfully against the installed Unity 6000.0.60f1 assemblies. Visual indoor/outdoor testing has not yet been performed.
 
+
+## 2026-11-02 — Playable village opening
+
+- Added a runtime opening in MainGame using the existing car, girl, alley and body discovery. The player hears her arrival thoughts, checks dispatch at the car with E, completes the girl's existing Japanese conversation, hears three original muffled knocks from the alley, then reaches the existing one-time body reveal and a final investigation thought.
+- Early exploration remains possible; the dialogue and reveal unlock in order. Pausing freezes progression, cancelled dialogue does not count as completed, and reloading the scene starts the opening again. The existing nearby spawn is preserved; distant spawns are moved beside the car only when a NavMesh point is available.
+- Added dialogue completion notification so progression follows finished conversations rather than button presses or timers. No scene assets or camera compositions are overwritten.
+- Affected files: Assets/_Scripts/Systems/OpeningSequence.cs, Assets/_Scripts/Systems/DialogueSystem.cs, Assets/_Scripts/Systems/Editor/OpeningSequenceValidation.cs.
+- Verification: runtime and editor scripts compiled successfully against the project Unity assemblies. An isolated additive-scene integration check is queued on editor import for ordered interactions, cancellation, pause and the complete opening flow; its execution has not been confirmed. In-game visual/audio verification remains pending.
+
+
+## 2026-11-02 — Body reveal no longer missed during alley dialogue
+
+- Fixed a missed-reveal case when the player passes the body while the alley subtitle is still playing. The opening now remembers entering the discovery area and retries the camera reveal after dialogue or quick-turn activity finishes.
+- Distance triggers and the alley sound now use the subject's configured focus offset, keeping them aligned with the visible body.
+- Strengthened opening validation to cross the body trigger during dialogue, walk away, and run the actual story camera through start/hold/return before checking the final thought.
+- Affected files: Assets/_Scripts/Systems/OpeningSequence.cs, StoryFocusShot.cs, Editor/OpeningSequenceValidation.cs. Runtime and editor compilation passed. The stronger editor regression check is queued for the next import; its new result has not yet been confirmed. Visual gameplay check pending.
+
+
+## 2026-11-02 — Live opening-sequence diagnosis
+
+- Added editor-only state capture during Play mode to diagnose the reported missing alley cue and body reveal in the actual MainGame scene. Captures the current story beat, dialogue, trigger bounds, player/body positions, camera readiness and reveal status once per second to Logs/Opening/live-state.txt.
+- No gameplay trigger or scene settings changed in this diagnostic step. Root cause remains under investigation despite the isolated regression test passing.
+- Affected file: Assets/_Scripts/Systems/Editor/OpeningLiveDiagnostics.cs.
+
+## 2026-11-02 — Restore the original body reveal
+
+- Removed the new opening's alley knocking, alley thought, body-reveal gate/retries and added aftermath thought. The opening now ends after the girl's conversation and never changes the original Deadman Discovery trigger or camera/dialogue settings.
+- Restored StoryFocusShot's original proximity calculation. The existing camera move, hold and body dialogue remain under the pre-existing story-camera system. Removed temporary live-state capture.
+- Retained arrival, car dispatch and girl dialogue. Updated the opening check to assert that the original body trigger remains enabled throughout the intro.
+- Affected files: OpeningSequence.cs, StoryFocusShot.cs, Editor/OpeningSequenceValidation.cs; removed Editor/OpeningLiveDiagnostics.cs and its metadata. Runtime and editor compilation passed; visual playtesting pending.
+

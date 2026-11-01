@@ -10,6 +10,8 @@ public sealed class DialogueSystem : MonoBehaviour
     public float arrivalDelay = 1.5f;
     public static bool BlocksPlayer { get; private set; }
     public bool IsPlaying => sequence != null;
+    public event System.Action<DialogueSequence> Completed;
+    public void SuppressArrival() => arrivalPlayed = true;
     private static DialogueSystem instance;
     private TextMeshProUGUI subtitle, hint;
     private DialogueSequence sequence;
@@ -177,7 +179,12 @@ public sealed class DialogueSystem : MonoBehaviour
     public void Advance()
     {
         if (!IsPlaying) return;
-        if (++index >= sequence.lines.Length) Stop();
+        if (++index >= sequence.lines.Length)
+        {
+            var completed = sequence;
+            Stop();
+            Completed?.Invoke(completed);
+        }
         else ShowLine();
     }
 
@@ -225,3 +232,4 @@ public sealed class DialogueSystem : MonoBehaviour
         return text;
     }
 }
+
