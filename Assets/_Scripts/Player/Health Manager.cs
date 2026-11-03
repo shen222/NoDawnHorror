@@ -8,7 +8,7 @@ public class HealthManager : MonoBehaviour
     [SerializeField] private AudioClip reactionSFX;
 
     [Header("Health Settings")]
-    [SerializeField] private int maxHealth = 100;
+    [SerializeField] private int maxHealth = 50;
     [SerializeField] private Animator animator;
     [SerializeField] private ParticleSystem bloodParticlePrefab;
     private int currentHealth;

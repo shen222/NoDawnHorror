@@ -6,9 +6,9 @@ using TMPro;
 public sealed class SurvivalHUD : MonoBehaviour
 {
     private HealthManager health;
-    private Gun gun;
-    private TankControls controls;
-    private TextMeshProUGUI ammoText, stateText, helpText, centerText;
+
+
+    private TextMeshProUGUI centerText;
     private UnityEngine.UI.Image damageFlash;
     private Material bloodVignetteMaterial;
     [Header("Health screen effect")]
@@ -18,10 +18,10 @@ public sealed class SurvivalHUD : MonoBehaviour
     private GameObject centerPanel;
     private UnityEngine.UI.Button restartButton;
     private bool restarting;
-    private bool paused, showHelp;
+    private bool paused;
     private float previousTimeScale = 1f, flashAlpha;
-    private int lastHealth = -1, lastAmmo = -1, lastReserve = -1;
-    private string lastState;
+    private int lastHealth = -1;
+
 
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.BeforeSceneLoad)]
     private static void Register()
@@ -40,9 +40,7 @@ public sealed class SurvivalHUD : MonoBehaviour
             if (playerHealth == null) continue;
             var hud = new GameObject("SurvivalHUD").AddComponent<SurvivalHUD>();
             SceneManager.MoveGameObjectToScene(hud.gameObject, scene);
-            hud.controls = tank;
             hud.health = playerHealth;
-            hud.gun = tank.EquippedGun != null ? tank.EquippedGun : tank.GetComponentInChildren<Gun>();
             return;
         }
     }
@@ -67,17 +65,6 @@ public sealed class SurvivalHUD : MonoBehaviour
         scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1280, 720);
         scaler.matchWidthOrHeight = 0.5f;
-
-        var ammoPanel = Panel("AmmoPanel", transform, new Vector2(1, 0), new Vector2(-24, 24), new Vector2(260, 100));
-        ammoText = Label("Ammo", ammoPanel, new Vector2(16, -12), new Vector2(228, 36), 28);
-        stateText = Label("CombatState", ammoPanel, new Vector2(16, -57), new Vector2(228, 26), 16);
-        stateText.color = new Color(0.75f, 0.8f, 0.76f);
-
-        var helpPanel = Panel("ControlsPanel", transform, new Vector2(0, 0), new Vector2(24, 24), new Vector2(540, 100));
-        helpText = Label("Controls", helpPanel, new Vector2(16, -12), new Vector2(508, 76), 17);
-        helpText.fontSize = 15;
-        helpText.text = "W/S 移動　A/D 旋回　Shift 走る\nSpace 構える　左クリック 撃つ　R 装填\nE 調べる・話す　Esc 一時停止";
-        helpPanel.gameObject.SetActive(showHelp);
 
         var flash = Panel("DamageFlash", transform, Vector2.zero, Vector2.zero, Vector2.zero);
         Stretch(flash);
@@ -116,7 +103,7 @@ public sealed class SurvivalHUD : MonoBehaviour
     private void Update()
     {
         if (health == null || centerText == null) return;
-        if (Input.GetKeyDown(KeyCode.Escape) && !health.IsDead)
+        if (Input.GetKeyDown(KeyCode.Escape) && !health.IsDead && !PlayerInspection.ConsumedEscape && !PlayerInspection.BlocksPlayer)
         {
             if (!paused)
             {
@@ -125,11 +112,6 @@ public sealed class SurvivalHUD : MonoBehaviour
                 paused = true;
             }
             else Resume();
-        }
-        if (Input.GetKeyDown(KeyCode.F1))
-        {
-            showHelp = !showHelp;
-            helpText.transform.parent.gameObject.SetActive(showHelp);
         }
         centerPanel.SetActive(paused || health.IsDead);
         restartButton.gameObject.SetActive(health.IsDead);
@@ -142,24 +124,6 @@ public sealed class SurvivalHUD : MonoBehaviour
         }
         else if (paused) centerText.text = "一時停止";
 
-        if (gun != null)
-        {
-            if (lastAmmo != gun.CurrentAmmo || lastReserve != gun.reserveAmmo)
-            {
-                lastAmmo = gun.CurrentAmmo;
-                lastReserve = gun.reserveAmmo;
-                ammoText.text = $"{lastAmmo:00} <size=18>/ {lastReserve:00}</size>";
-                ammoText.color = lastAmmo == 0 ? new Color(1, 0.55f, 0.4f) : Color.white;
-            }
-            string status = gun.IsReloading ? "装填中" : gun.CurrentAmmo == 0 ? "弾切れ" : "";
-            if (status != lastState) { stateText.text = status; lastState = status; }
-        }
-        else if (lastState != "武器なし")
-        {
-            ammoText.text = "--";
-            lastState = "武器なし";
-            stateText.text = "";
-        }
         flashAlpha = Mathf.MoveTowards(flashAlpha, 0f, Time.unscaledDeltaTime * 0.65f);
         healthTint = Mathf.SmoothDamp(healthTint, targetHealthTint, ref healthTintVelocity,
             healthTintFadeTime, Mathf.Infinity, Time.unscaledDeltaTime);

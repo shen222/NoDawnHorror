@@ -76,6 +76,7 @@ public sealed class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
+        if (PlayerInspection.BlocksPlayer) { subtitle.enabled = hint.enabled = false; return; }
         if (player == null || (health != null && health.IsDead)) { Stop(); return; }
         // Pause also freezes automatic subtitles and prevents advancing hidden dialogue.
         if (Time.timeScale == 0f)
@@ -158,7 +159,7 @@ public sealed class DialogueSystem : MonoBehaviour
     private bool PlayInternal(DialogueSequence value, StoryCameraDirector owner)
     {
         if (!isActiveAndEnabled || IsPlaying || !HasValidLines(value) ||
-            Time.timeScale == 0f || (StoryCameraDirector.IsPlaying && owner == null) || (health != null && health.IsDead)) return false;
+            Time.timeScale == 0f || PlayerInspection.BlocksPlayer || (StoryCameraDirector.IsPlaying && owner == null) || (health != null && health.IsDead)) return false;
         storyOwner = owner;
         sequence = value;
         index = 0;

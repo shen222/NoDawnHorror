@@ -83,7 +83,7 @@ public class TankControls : MonoBehaviour
 
     void Update()
     {
-        if (Time.timeScale == 0f || DialogueSystem.BlocksPlayer || StoryCameraDirector.BlocksPlayer || (health != null && health.IsDead))
+        if (Time.timeScale == 0f || PlayerInspection.BlocksPlayer || DialogueSystem.BlocksPlayer || StoryCameraDirector.BlocksPlayer || (health != null && health.IsDead))
         {
             VerticalInput = HorizontalInput = AimVerticalInput = 0f;
             IsSprinting = IsAiming = false;

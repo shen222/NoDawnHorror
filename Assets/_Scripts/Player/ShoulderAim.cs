@@ -60,8 +60,8 @@ public sealed class ShoulderAim : MonoBehaviour
             Pitch = controls != null ? -controls.AimAngle : 0;
             active = true;
             if (brain != null) brain.enabled = false;
-            if (crosshair == null) BuildCrosshair();
-            crosshair.SetActive(true);
+
+            if (crosshair != null) crosshair.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             // Ignore the mouse delta from the frame that captured the cursor.

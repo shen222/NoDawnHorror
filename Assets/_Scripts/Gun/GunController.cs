@@ -59,7 +59,7 @@ public class Gun : MonoBehaviour
 
     public void TryShoot()
     {
-        if (Time.timeScale == 0f || isReloading || (ownerHealth != null && ownerHealth.IsDead)) return;
+        if (Time.timeScale == 0f || PlayerInspection.BlocksPlayer || isReloading || (ownerHealth != null && ownerHealth.IsDead)) return;
         if (projectilePrefab == null || firePoint == null) return;
 
         if (!CanShoot()) return;
@@ -130,7 +130,7 @@ public class Gun : MonoBehaviour
 
     public void TryReload()
     {
-        if (Time.timeScale == 0f || isReloading || (ownerHealth != null && ownerHealth.IsDead)) return;
+        if (Time.timeScale == 0f || PlayerInspection.BlocksPlayer || isReloading || (ownerHealth != null && ownerHealth.IsDead)) return;
         if (currentAmmo == magSize) return;
         if (reserveAmmo <= 0) return;
 

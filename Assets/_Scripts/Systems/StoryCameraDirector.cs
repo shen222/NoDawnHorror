@@ -31,7 +31,7 @@ public sealed class StoryCameraDirector : MonoBehaviour
     internal bool TryPlayWithCamera(StoryFocusShot value, Camera outputCamera)
     {
         if (!isActiveAndEnabled || IsPlaying || value == null || value.subject == null || value.cameraAnchor == null ||
-            Time.timeScale == 0 || DialogueSystem.BlocksPlayer) return false;
+            Time.timeScale == 0 || PlayerInspection.BlocksPlayer || DialogueSystem.BlocksPlayer) return false;
         rig = GetComponent<ExplorationCameraRig>();
         if (rig == null || rig.player == null || rig.player != value.player || rig.player.IsQuickTurning) return false;
         if (value.dialogue != null && !DialogueSystem.HasValidLines(value.dialogue)) return false;
