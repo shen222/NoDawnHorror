@@ -96,3 +96,43 @@ Dates use Asia/Tokyo.
 - Retained arrival, car dispatch and girl dialogue. Updated the opening check to assert that the original body trigger remains enabled throughout the intro.
 - Affected files: OpeningSequence.cs, StoryFocusShot.cs, Editor/OpeningSequenceValidation.cs; removed Editor/OpeningLiveDiagnostics.cs and its metadata. Runtime and editor compilation passed; visual playtesting pending.
 
+
+## 2026-11-04 — Shootable main-menu prototype
+
+- Added a separate MainMenu scene workflow using the existing village/alley and player character. The character remains stationary, follows the mouse with her aim, and right-click fires a visible menu projectile with the existing weapon animation and sound.
+- Play, Settings and Quit appear as simple targets on the right. A target only activates when the projectile reaches its collider; it breaks into twelve short-lived fragments before navigation. Misses do not navigate, and duplicate hits are blocked during the transition.
+- Settings has shootable volume down/up, fullscreen and Back targets. Volume persists into gameplay; Quit stops Play mode in the Editor and exits in builds. Menu shots have no gameplay damage path or ammunition limit.
+- Setup creates Assets/Scenes/MainMenu.unity from the saved MainGame scenery and places it first in Build Settings. The source MainGame scene and gameplay controls are not edited.
+- Created MainMenu and registered it as the first enabled build scene; MainGame remains enabled. Added a foreground camera so scenery cannot hide the character or targets, plus an explicitly included unlit shader for the boards, fragments and tracers. Added MAIN_MENU.md with controls and setup notes.
+- Affected files: Assets/_Scripts/Menu/GunMenu.cs, MenuBullet.cs, MenuFragment.cs, ShootableMenuTarget.cs; Assets/_Scripts/Systems/Editor/GunMenuSetup.cs; Assets/Resources/MenuSurface.shader; Assets/Scenes/MainMenu.unity and metadata; ProjectSettings/EditorBuildSettings.asset; MAIN_MENU.md; Logs/Menu/setup-result.txt and manual-validation.txt.
+- Verification: Unity 6000.0.60f1 compiled the scripts and ran scene setup successfully. In Play mode, verified the visible alley menu, mouse aiming, Settings, volume down/up, Back, missed shots leaving the menu unchanged, Quit stopping the preview, and Play loading MainGame with its Japanese arrival dialogue and HUD. Rechecked target rendering, Settings, Back and Play after the final target-depth and shader changes. MainMenu is left open in Edit mode, ready to preview. Standalone fullscreen/application exit and audio listening remain unverified.
+
+## 2026-11-04 — Plane Crash title and Pixelta game UI
+
+- Converted the two supplied TTF files into reusable TextMeshPro assets with saved static SDF atlases and materials at Assets/Resources/Fonts/PlaneCrash.asset and Pixelta.asset. The original files remain in Assets/Fonts. Added Tools/Fonts/Prepare Game Fonts to repeat setup and validation.
+- Applied Plane Crash only to the main-menu title. This font uses lowercase character slots for its distressed capital lettering, so the title renders as NO DAWN instead of the pictograms mapped to uppercase slots.
+- Applied Pixelta to menu buttons, settings, hints, reticle, dialogue labels and the SurvivalHUD (including ammunition, controls, pause/death text). Pixelta is also the TMP default for new text. Existing Noto Sans JP remains the fallback for Japanese and unsupported symbols; Japanese text is not translated or replaced. Dynamic fallback data is cleared on build.
+- Affected files: Assets/_Scripts/Systems/GameFonts.cs; Assets/_Scripts/Systems/Editor/GameFontSetup.cs; Assets/_Scripts/Menu/GunMenu.cs; Assets/_Scripts/Systems/DialogueSystem.cs and SurvivalHUD.cs; Assets/Resources/Fonts and metadata; Assets/Resources/Japanese/JapaneseFont.asset; Assets/Art/Packs/Unity/TextMesh Pro/Resources/TMP Settings.asset; MAIN_MENU.md. Verification notes: Logs/Fonts/setup-result.txt; preview captures: Assets/Logs/Fonts.
+- Verification: Unity 6000.0.60f1 compiled the final scripts and successfully reran font setup. Verified saved atlas/material sub-assets, essential Latin glyphs and Japanese fallback. Play-mode inspection confirmed Plane Crash on the title and Pixelta on the remaining menu and gameplay text, including inactive HUD labels. Visually checked the corrected title, menu buttons, ammo and Japanese arrival subtitle; confirmed the player loop advanced. Restored the background-run setting and left MainMenu open outside Play mode. Standalone build rendering has not been tested.
+
+## 2026-11-04 — Main-menu laser, editable placement and scene cleanup
+
+- Added a red muzzle-to-aim laser with endpoint dot. The beam checks the first menu target with the same 0.025m sweep radius as menu bullets. Color and width can be adjusted on Menu Controller. Only the menu is affected.
+- Removed the runtime character/camera placement override. Menu Character and Menu Camera are now authored scene objects with serialized references. Move Menu Character with W or Transform Position outside Play mode, then save; the running menu preserves her position while rotating to aim. Retained weapon animation, muzzle flash and shot audio without gameplay Gun, movement or health components.
+- Cleaned MainMenu from 954 to 117 objects: removed enemies, NPCs, dialogue, discovery triggers, extra gameplay cameras, navigation and off-screen/inactive scenery. Kept the visible alley, character, light, ambience, terrain and menu snow with its roof-protection component and scenery colliders. Shared project assets and MainGame were not edited. A pre-cleanup backup is Logs/Menu/MainMenu-before-cleanup-20261104-074311.unity.
+- Scene size reduced from 847,920 bytes to 341473 bytes (about 60%). This measures serialized scene size; FPS and standalone load time were not benchmarked.
+- Affected files: Assets/_Scripts/Menu/GunMenu.cs; Assets/_Scripts/Systems/Editor/MenuSceneCleanup.cs and metadata; Assets/Scenes/MainMenu.unity; MAIN_MENU.md; Logs/Menu/cleanup-result.txt. Preview: Assets/Logs/Menu/clean-menu.png.
+- Verification: Unity compiled the menu changes and saved the scene through the Editor. Confirmed advancing Play-mode frames, one laser renderer, no TankControls or ZombieAI in the menu, and visible character/title/buttons/alley. Fired actual menu projectiles at Settings, Back and Play; each navigated correctly and Play loaded MainGame. Runtime character position matched the authored scene position. No new errors appeared in the check; a prior CLI timeout remained in historical logs. Added explicit snow shelter protection after this visual check; indoor snow behavior and standalone build remain unverified. Restored the temporary background-run setting, exited Play mode and selected Menu Character for editing.
+
+## 2026-11-04 — Main-menu shooting feedback
+
+- Added a short camera recoil kick, an 80ms warm screen flash and a reticle pulse whenever a menu shot actually fires. Camera motion settles over 180ms and restores the authored transform before mouse aiming is calculated, preventing accumulated camera drift.
+- Added a four-tick hit marker that fades over 220ms when a projectile reaches a menu target, alongside the existing break fragments. Feedback uses a separate nonblocking overlay and runs only in MainMenu; it does not add gameplay damage effects or change the character's authored position.
+- Affected files: Assets/_Scripts/Menu/MenuShotFeedback.cs and metadata; Assets/_Scripts/Menu/GunMenu.cs; MAIN_MENU.md. Peak-effect inspection capture: Assets/Logs/Menu/shot-feedback-peak.png.
+- Verification: Unity compiled the changes; confirmed advancing Play-mode frames. Live probes verified nonzero camera recoil, visible flash alpha and exact camera position/rotation recovery. Fired real projectiles to open Settings and return with Back. Checked zero raycast-blocking images in the feedback overlay and visually inspected flash/hit-marker rendering by temporarily holding the peak effect; normal timing was restored afterward. No new errors were observed. Restored the background-run setting and returned to Edit mode, preserving the existing unsaved scene edits. Standalone rendering and subjective motion feel remain unverified.
+
+## 2026-11-04 — Left-click menu shooting
+
+- Changed MainMenu shooting to the left mouse button and updated both main-menu/settings hints and the controls documentation.
+- Affected files: Assets/_Scripts/Menu/GunMenu.cs; MAIN_MENU.md.
+- Verification: inspected the input binding (GetMouseButtonDown(0)) and both hint strings. Live mouse input and Unity compilation were not retested for this binding-only change.

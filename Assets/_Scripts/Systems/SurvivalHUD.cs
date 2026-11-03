@@ -227,7 +227,7 @@ public sealed class SurvivalHUD : MonoBehaviour
         rect.anchoredPosition = position;
         rect.sizeDelta = size;
         var text = obj.AddComponent<TextMeshProUGUI>();
-        text.font = JapaneseText.Font;
+        text.font = GameFonts.UI;
         text.fontSize = fontSize;
         text.enableAutoSizing = false;
         text.color = Color.white;

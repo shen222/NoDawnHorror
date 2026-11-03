@@ -216,7 +216,7 @@ public sealed class DialogueSystem : MonoBehaviour
         rect.anchoredPosition = new Vector2(0, bottom);
         rect.sizeDelta = new Vector2(0, height);
         var text = obj.AddComponent<TextMeshProUGUI>();
-        text.font = JapaneseText.Font;
+        text.font = GameFonts.UI;
         text.fontSize = size;
         text.color = Color.white;
         text.alignment = TextAlignmentOptions.Center;
