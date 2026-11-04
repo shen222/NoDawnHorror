@@ -27,17 +27,25 @@ public sealed class ClassicLaserSight : MonoBehaviour
 
     private void LateUpdate()
     {
+        var shoulder = player != null ? player.GetComponent<ShoulderAim>() : null;
+        bool shoulderAiming = player != null && player.CurrentShootingMode == ShootingMode.ShoulderAim && shoulder != null && shoulder.IsActive;
         bool visible = gun != null && gun.isActiveAndEnabled && gun.firePoint != null &&
             player != null && player.isActiveAndEnabled && player.IsAiming &&
-            player.CurrentShootingMode == ShootingMode.Classic && !gun.IsReloading &&
+            (player.CurrentShootingMode == ShootingMode.Classic || shoulderAiming) && !gun.IsReloading &&
             (health == null || !health.IsDead) && Time.timeScale > 0 &&
-            !DialogueSystem.BlocksPlayer && !StoryCameraDirector.IsPlaying;
+            !PlayerInspection.BlocksPlayer && !DialogueSystem.BlocksPlayer && !StoryCameraDirector.IsPlaying;
         if (!visible) { Hide(); return; }
         if (beam == null && !CreateVisuals()) return;
 
         Vector3 start = gun.firePoint.position;
         Vector3 direction = gun.firePoint.forward;
+        if (shoulderAiming)
+        {
+            Vector3 offset = shoulder.GetAimPoint() - start;
+            if (offset.sqrMagnitude > .0001f) direction = offset.normalized;
+        }
         float range = Mathf.Max(.1f, maximumDistance);
+        if (shoulderAiming) range = Mathf.Max(range, shoulder.aimDistance);
         int count;
         while ((count = Physics.RaycastNonAlloc(start, direction, hits, range, ~0, QueryTriggerInteraction.Collide)) == hits.Length)
             Array.Resize(ref hits, hits.Length * 2);
