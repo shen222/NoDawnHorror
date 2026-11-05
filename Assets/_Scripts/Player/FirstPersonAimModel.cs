@@ -25,8 +25,10 @@ internal sealed class FirstPersonAimModel
         float withdrawal = Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(.18f, .42f, t));
         float insertion = 1f - Mathf.SmoothStep(0f, 1f, Mathf.InverseLerp(.52f, .75f, t));
         float travel = .105f * withdrawal * insertion;
-        pose.localPosition = new Vector3(.075f, -.025f, 0f) * dip;
-        pose.localRotation = Quaternion.Euler(-23f * dip, -9f * dip, -21f * dip);
+        Quaternion tilt = Quaternion.Euler(18f * dip, -9f * dip, -21f * dip);
+        var pivot = new Vector3(0f, -.1f, .42f);
+        pose.localPosition = pivot - tilt * pivot + new Vector3(.075f, -.025f, 0f) * dip;
+        pose.localRotation = tilt;
         supportHand.localPosition = supportRest + Vector3.down * (travel + .035f * dip);
         if (magazine != null)
         {

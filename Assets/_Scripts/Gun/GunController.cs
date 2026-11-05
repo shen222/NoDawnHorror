@@ -105,7 +105,6 @@ public class Gun : MonoBehaviour
         if (shoulderAim != null && shoulderAim.IsActive &&
             (aimingPlayer == null || aimingPlayer.CurrentShootingMode == ShootingMode.ShoulderAim))
         {
-            shotOrigin = shoulderAim.GetMuzzlePosition(firePoint);
             Vector3 direction = shoulderAim.GetAimPoint() - shotOrigin;
             if (direction.sqrMagnitude > 0.0001f) shotRotation = Quaternion.LookRotation(direction);
         }

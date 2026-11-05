@@ -37,7 +37,7 @@ public sealed class ClassicLaserSight : MonoBehaviour
         if (!visible) { Hide(); return; }
         if (beam == null && !CreateVisuals()) return;
 
-        Vector3 start = shoulderAiming ? shoulder.GetMuzzlePosition(gun.firePoint) : gun.firePoint.position;
+        Vector3 start = gun.firePoint.position;
         Vector3 direction = gun.firePoint.forward;
         if (shoulderAiming)
         {

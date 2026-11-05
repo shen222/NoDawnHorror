@@ -204,3 +204,23 @@ Dates use Asia/Tokyo.
 
 - Widened the FPS Glock by 20% around the muzzle and disabled retro vertex snapping on its close-up material. The full rear slide is visible in straight-on aim, with the laser still centered.
 - Updated `FirstPersonAimModel.cs`, `FirstPersonGlock.mat`, and the PSX Lite Unlit shader and include. Unity compiled and all 43 Play-mode shooting checks passed. Visually verified the full slide in `Logs/Combat/wide-fps-glock.png`.
+
+## 2026-11-05 — Animate the FPS reload
+
+- Added a timed first-person reload pose that dips and tilts the Glock as the support hand lowers the magazine, replaces it, and brings the pistol back up. The existing weapon reload timer drives the motion.
+- Updated `Assets/_Scripts/Gun/GunController.cs`, `Assets/_Scripts/Player/ShoulderAim.cs`, and `Assets/_Scripts/Player/FirstPersonAimModel.cs`. Unity compiled, all 43 shooting checks passed, and controlled Play-mode samples verified the dip, magazine removal, reinsertion, and return poses. Continuous visual playback was not reviewed.
+
+## 2026-11-05 — Cinemachine FPS view of the original weapon animation
+
+- FPS aim now selects an eye-level Cinemachine camera on the live player. The original character and Glock rigs provide the firing and reload motion. The laser and projectile start at the animated gun muzzle.
+- Updated `ShoulderAim.cs`, `GunController.cs`, `ClassicLaserSight.cs`, `CameraObstacleAvoidance.cs`, `ShootingModeValidation.cs`, and `CAMERA_SHOTS.md`. Unity compiled and all 42 updated shooting checks passed. MainGame captures confirmed the existing reload moves the gun and magazine in FPS. Part of the pistol can leave the frame during the original reload. Full-speed manual playback and standalone builds were not tested.
+
+## 2026-11-05 — Clean up the animated Glock shader in FPS aim
+
+- The live Glock now uses its 256×256 close-up material while aiming in first person. The material disables vertex snapping, affine texture warping and per-object dithering. Leaving aim restores each gun part's original material.
+- Updated `Assets/_Scripts/Player/ShoulderAim.cs`, `Assets/Resources/FirstPersonGlock.mat`, and the PSX Lite shader include. Unity compiled, all 42 shooting checks passed, and a MainGame probe verified material application and restoration on the animated slide. Full-speed reload visuals were not reviewed.
+
+## 2026-11-05 — Bring the player’s hands into the FPS view
+
+- Moved the first-person camera 8 cm back and widened its field of view from 58° to 74° in `Assets/_Scripts/Player/ShoulderAim.cs`.
+- Confirmed in MainGame that the original hands and forearms are visible and the face stays out of frame in the held aiming pose. All 42 Play-mode shooting checks passed. The full reload animation was not visually reviewed with this framing.

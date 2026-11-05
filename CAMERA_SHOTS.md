@@ -171,7 +171,8 @@ On its **Cam Switcher** component, set **Shooting Mode**:
 - **Classic** keeps the exploration camera in control while the player aims,
   hides the crosshair, and fires along the gun barrel. The zone's Fixed, Moving,
   Follow, or Cinematic camera behavior is preserved.
-- **First Person Aim** raises the pistol to eye level and uses mouse targeting.
+- **First Person Aim** switches Cinemachine to an eye-level view of the animated
+  player and pistol, with mouse targeting.
   Space toggles aim, left click or J fires, and R or K reloads. Existing Shoulder
   Aim selections automatically use this view.
 
@@ -191,7 +192,7 @@ animation parameter to pose the gun; it does not add automatic target locking.
 
 **Tools > Combat > Validate Zone Shooting Modes (Play Mode)** runs isolated checks
 for mode inheritance, zone overlap and exit, classic controls, camera/cursor
-handoffs, first-person model visibility, and actual projectile directions. It restores
+handoffs, first-person camera selection, and actual projectile directions. It restores
 its temporary camera and cursor state when finished. Results are saved to
 `Logs/Combat/shooting-modes.txt`.
 
@@ -203,7 +204,7 @@ vertical aim. Player colliders, projectiles, and non-combat trigger volumes are
 ignored; enemy trigger hitboxes can stop the sight. A ray into open space ends
 at the configured range without displaying a floating dot.
 
-First Person Aim uses a thinner beam from the visible muzzle toward the same
+First Person Aim uses a thinner beam from the animated weapon muzzle toward the same
 mouse-controlled point used by the projectile. The sight hides when the gun is
 lowered and during reloading, inspection, pause, blocking dialogue, story shots,
 or death. Existing guns receive it automatically at runtime. To customize its

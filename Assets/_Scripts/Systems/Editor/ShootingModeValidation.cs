@@ -30,7 +30,6 @@ public static class ShootingModeValidation
             player.enabled = false;
             shoulder = playerRoot.AddComponent<ShoulderAim>();
             shoulder.enabled = false;
-            shoulder.transitionDuration = 0;
             var gun = Child(playerRoot, "Gun").AddComponent<Gun>();
             gun.firePoint = Child(gun.gameObject, "Muzzle").transform;
             gun.firePoint.localPosition = Vector3.up;
@@ -165,16 +164,19 @@ public static class ShootingModeValidation
             Invoke(laser, "LateUpdate");
             Check(!beam.enabled && !dot.enabled, "switching to shoulder aim hides the classic laser");
             Check(player.IsAiming, "changing zone mode preserves a raised gun");
-            Check(Aim(Vector2.zero, true) && shoulder.IsActive && !brain.enabled, "shoulder aiming takes camera control");
-            var foreground = camera.transform.Find("First Person Aim Camera").GetComponent<Camera>();
-            Check(foreground.enabled, "first-person aim displays the weapon view model");
-            Check(Vector3.Distance(camera.transform.position, player.transform.position + Vector3.up * shoulder.eyeHeight) < .1f,
+            Check(Aim(Vector2.zero, true) && shoulder.IsActive && brain.enabled, "FPS aiming keeps Cinemachine active");
+            var aimCamera = player.transform.Find("First Person Aim Camera").GetComponent<CinemachineCamera>();
+            brain.ManualUpdate();
+            Check(aimCamera.enabled && brain.ActiveVirtualCamera == aimCamera, "Cinemachine selects the FPS aim camera");
+            Vector3 eye = player.transform.position + Vector3.up * shoulder.eyeHeight +
+                player.transform.forward * shoulder.eyeForwardOffset + player.transform.right * shoulder.eyeSideOffset;
+            Check(Vector3.Distance(camera.transform.position, eye) < .03f,
                 "first-person aim places the camera at eye level");
             rotation = player.transform.rotation;
             Aim(new Vector2(4, 2), true);
             Check(Quaternion.Angle(rotation, player.transform.rotation) > 1, "mouse aiming still turns the character");
             Vector3 aimPoint = shoulder.GetAimPoint();
-            Vector3 muzzle = shoulder.GetMuzzlePosition(gun.firePoint);
+            Vector3 muzzle = gun.firePoint.position;
             Invoke(laser, "LateUpdate");
             Check(beam.enabled && Vector3.Distance(beam.GetPosition(0), muzzle) < .02f,
                 "first-person laser starts at the visible muzzle");
@@ -193,12 +195,10 @@ public static class ShootingModeValidation
             Tick();
             Check(player.CurrentShootingMode == ShootingMode.Classic && player.IsAiming,
                 "editing the winning zone switches mode without lowering the gun");
-            Check(!shoulder.IsActive && brain.enabled && !foreground.gameObject.activeInHierarchy,
-                "switching to classic restores camera control and deactivates the entire first-person model");
+            Check(!shoulder.IsActive && brain.enabled && !aimCamera.enabled,
+                "switching to classic restores camera control and releases the first-person camera");
             Invoke(laser, "LateUpdate");
             Check(beam.enabled, "switching back to classic restores the laser");
-            Check(!(bool)typeof(ShoulderAim).GetField("returning", Private).GetValue(shoulder),
-                "classic mode cancels the old shoulder return blend");
             Check(Cursor.lockState == oldLock && Cursor.visible == oldCursor,
                 "classic mode restores cursor state");
 
@@ -220,8 +220,8 @@ public static class ShootingModeValidation
             Check(Aim(Vector2.zero, true), "shoulder aiming can resume after classic mode");
             Check(!Aim(Vector2.zero, false) && !shoulder.IsActive && brain.enabled,
                 "losing focus safely releases shoulder aiming");
-            Check(!foreground.gameObject.activeInHierarchy,
-                "leaving FPS aim makes its hands invisible to exploration and inspection cameras");
+            Check(!aimCamera.enabled,
+                "leaving FPS aim disables the virtual camera");
 
             string report = $"PASS: {results.Count} shooting-mode checks\n" + string.Join("\n", results);
             System.IO.Directory.CreateDirectory("Logs/Combat");

@@ -28,12 +28,20 @@ public sealed class CameraObstacleAvoidance : MonoBehaviour
     private Vector3 previousPosition;
     private bool recovering;
     private bool hasPreviousPosition;
+    private ShoulderAim firstPersonAim;
 
     private void Awake() => view = GetComponent<Camera>();
 
     private void LateUpdate()
     {
         if (player == null) return;
+        if (firstPersonAim == null || firstPersonAim.transform != player)
+            firstPersonAim = player.GetComponent<ShoulderAim>();
+        if (firstPersonAim != null && firstPersonAim.OwnsCamera)
+        {
+            hasPreviousPosition = recovering = false;
+            return;
+        }
         // Recovery belongs to the previous shot. Carrying it across a cut can
         // pull a correctly selected Cinemachine camera back to the old view.
         // The new shot still gets the near-plane overlap check below.

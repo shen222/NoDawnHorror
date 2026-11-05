@@ -72,6 +72,9 @@ v2f vert(appdata v)
 #endif
 
 	o.affineUV1 = CalculateAffineUV(o.vertex, TRANSFORM_TEX(v.uv, _MainTex));
+#ifdef PSX_ALLOW_UNSNAPPED_VERTICES
+	o.affineUV1 = lerp(o.affineUV1, float4(TRANSFORM_TEX(v.uv, _MainTex), 1, 0), _PreserveSilhouette);
+#endif
 #ifdef PSX_VERTEX_LIT
 	o.affineUV2 = CalculateAffineUV(o.vertex, TRANSFORM_TEX(v.uv, _EmissiveTex));
 #endif
