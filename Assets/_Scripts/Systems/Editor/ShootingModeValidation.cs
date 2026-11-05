@@ -21,7 +21,6 @@ public static class ShootingModeValidation
         CursorLockMode oldLock = Cursor.lockState;
         bool oldCursor = Cursor.visible;
         ShoulderAim shoulder = null;
-        GameObject crosshair = null;
         try
         {
             var playerRoot = Child(root, "Player");
@@ -167,14 +166,23 @@ public static class ShootingModeValidation
             Check(!beam.enabled && !dot.enabled, "switching to shoulder aim hides the classic laser");
             Check(player.IsAiming, "changing zone mode preserves a raised gun");
             Check(Aim(Vector2.zero, true) && shoulder.IsActive && !brain.enabled, "shoulder aiming takes camera control");
-            crosshair = (GameObject)typeof(ShoulderAim).GetField("crosshair", Private).GetValue(shoulder);
-            Check(crosshair != null && crosshair.activeSelf, "shoulder mode shows the crosshair");
+            var foreground = camera.transform.Find("First Person Aim Camera").GetComponent<Camera>();
+            Check(foreground.enabled, "first-person aim displays the weapon view model");
+            Check(Vector3.Distance(camera.transform.position, player.transform.position + Vector3.up * shoulder.eyeHeight) < .1f,
+                "first-person aim places the camera at eye level");
             rotation = player.transform.rotation;
             Aim(new Vector2(4, 2), true);
             Check(Quaternion.Angle(rotation, player.transform.rotation) > 1, "mouse aiming still turns the character");
             Vector3 aimPoint = shoulder.GetAimPoint();
+            Vector3 muzzle = shoulder.GetMuzzlePosition(gun.firePoint);
+            Invoke(laser, "LateUpdate");
+            Check(beam.enabled && Vector3.Distance(beam.GetPosition(0), muzzle) < .02f,
+                "first-person laser starts at the visible muzzle");
             var shoulderShot = Fire();
-            Check(Vector3.Dot(shoulderShot.transform.forward, (aimPoint - gun.firePoint.position).normalized) > .999f,
+            Check(Vector3.Distance(shoulderShot.transform.position, muzzle) < .02f,
+                "first-person projectile uses the laser muzzle");
+
+            Check(Vector3.Dot(shoulderShot.transform.forward, (aimPoint - muzzle).normalized) > .999f,
                 "shoulder projectiles converge on the camera aim point");
             Check(Vector3.Dot(shoulderShot.transform.forward, gun.firePoint.forward) < .5f,
                 "camera targeting differs from classic muzzle targeting");
@@ -185,8 +193,8 @@ public static class ShootingModeValidation
             Tick();
             Check(player.CurrentShootingMode == ShootingMode.Classic && player.IsAiming,
                 "editing the winning zone switches mode without lowering the gun");
-            Check(!shoulder.IsActive && brain.enabled && !crosshair.activeSelf,
-                "switching to classic restores camera control and hides the crosshair");
+            Check(!shoulder.IsActive && brain.enabled && !foreground.gameObject.activeInHierarchy,
+                "switching to classic restores camera control and deactivates the entire first-person model");
             Invoke(laser, "LateUpdate");
             Check(beam.enabled, "switching back to classic restores the laser");
             Check(!(bool)typeof(ShoulderAim).GetField("returning", Private).GetValue(shoulder),
@@ -212,6 +220,8 @@ public static class ShootingModeValidation
             Check(Aim(Vector2.zero, true), "shoulder aiming can resume after classic mode");
             Check(!Aim(Vector2.zero, false) && !shoulder.IsActive && brain.enabled,
                 "losing focus safely releases shoulder aiming");
+            Check(!foreground.gameObject.activeInHierarchy,
+                "leaving FPS aim makes its hands invisible to exploration and inspection cameras");
 
             string report = $"PASS: {results.Count} shooting-mode checks\n" + string.Join("\n", results);
             System.IO.Directory.CreateDirectory("Logs/Combat");
@@ -221,7 +231,6 @@ public static class ShootingModeValidation
         finally
         {
             if (shoulder != null) shoulder.ReturnToExplorationImmediately();
-            if (crosshair != null) UnityEngine.Object.DestroyImmediate(crosshair);
             UnityEngine.Object.DestroyImmediate(root);
             if (originalMain != null) originalMain.tag = "MainCamera";
             Cursor.lockState = oldLock;

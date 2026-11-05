@@ -32,10 +32,13 @@ public class Gun : MonoBehaviour
     private float nextFireTime;
     private int currentAmmo;
     private bool isReloading = false;
+    private float reloadStartedAt;
     private HealthManager ownerHealth;
 
     public int CurrentAmmo => currentAmmo;
     public bool IsReloading => isReloading;
+    internal float ReloadProgress => isReloading
+        ? Mathf.Clamp01((Time.time - reloadStartedAt) / Mathf.Max(.01f, reloadTime)) : 0f;
 
     void Start()
     {
@@ -96,15 +99,17 @@ public class Gun : MonoBehaviour
         PlayShootSFX();
 
         Quaternion shotRotation = firePoint.rotation;
+        Vector3 shotOrigin = firePoint.position;
         var shoulderAim = GetComponentInParent<ShoulderAim>();
         var aimingPlayer = GetComponentInParent<TankControls>();
         if (shoulderAim != null && shoulderAim.IsActive &&
             (aimingPlayer == null || aimingPlayer.CurrentShootingMode == ShootingMode.ShoulderAim))
         {
-            Vector3 direction = shoulderAim.GetAimPoint() - firePoint.position;
+            shotOrigin = shoulderAim.GetMuzzlePosition(firePoint);
+            Vector3 direction = shoulderAim.GetAimPoint() - shotOrigin;
             if (direction.sqrMagnitude > 0.0001f) shotRotation = Quaternion.LookRotation(direction);
         }
-        var shot = Instantiate(projectilePrefab, firePoint.position, shotRotation);
+        var shot = Instantiate(projectilePrefab, shotOrigin, shotRotation);
         var projectile = shot.GetComponent<Projectile>();
         if (projectile != null)
         {
@@ -118,7 +123,7 @@ public class Gun : MonoBehaviour
 
         if (selectedVFX != null && firePoint != null)
         {
-            GameObject vfx = Instantiate(selectedVFX, firePoint.position, firePoint.rotation);
+            GameObject vfx = Instantiate(selectedVFX, shotOrigin, shotRotation);
 
             // Randomly adjust the scale
             float randomScale = 1f + Random.Range(-0.1f, 0.1f);
@@ -141,6 +146,7 @@ public class Gun : MonoBehaviour
     {
         if (characterAnimator != null) characterAnimator.SetTrigger("Reload");
         if (gunAnimator != null) gunAnimator.SetTrigger("Reload");
+        reloadStartedAt = Time.time;
         isReloading = true;
 
         if (magazinePrefab != null && magazineEjectPoint != null)

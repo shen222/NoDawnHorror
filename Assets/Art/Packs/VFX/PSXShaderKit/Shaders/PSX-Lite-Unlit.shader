@@ -5,6 +5,7 @@
         _Color("Color (RGBA)", Color) = (1, 1, 1, 1)
         _MainTex("Texture", 2D) = "white" {}
         _ObjectDithering("Per-Object Dithering Enable", Range(0,1)) = 1
+        [Toggle] _PreserveSilhouette("Preserve Mesh Silhouette", Float) = 0
     }
         SubShader
     {
@@ -20,6 +21,7 @@
             #pragma multi_compile_fog
 
             #define PSX_TRIANGLE_SORT_OFF
+            #define PSX_ALLOW_UNSNAPPED_VERTICES
             #include "UnityCG.cginc"
             #include "PSX-Utils.cginc"
 

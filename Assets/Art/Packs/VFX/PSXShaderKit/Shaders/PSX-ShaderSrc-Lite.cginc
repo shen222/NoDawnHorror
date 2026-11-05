@@ -42,6 +42,9 @@ float4 _EmissiveTex_ST;
 
 fixed _PSX_VertexWobbleMode;
 float _ObjectDithering;
+#ifdef PSX_ALLOW_UNSNAPPED_VERTICES
+float _PreserveSilhouette;
+#endif
 
 float3 ShadePSXVertexLights (float4 vertex, float3 normal)
 {
@@ -85,6 +88,9 @@ v2f vert(appdata v)
 	clipSnappedVertex.xy = SnapVertexToGrid(clipSnappedVertex).xy;
 
 	o.vertex = lerp(viewSnappedVertex, clipSnappedVertex, _PSX_VertexWobbleMode);
+#ifdef PSX_ALLOW_UNSNAPPED_VERTICES
+	o.vertex = lerp(o.vertex, mul(matrix_p, mul(matrix_mv, v.vertex)), _PreserveSilhouette);
+#endif
 
 	UNITY_TRANSFER_FOG(o, o.vertex);
 

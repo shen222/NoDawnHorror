@@ -160,3 +160,47 @@ Dates use Asia/Tokyo.
 - Laser stays hidden during equipment viewing, reloads, pause, death, blocking dialogue and story-camera shots. The original mesh guide remains hidden.
 - Affected file: Assets/_Scripts/Gun/ClassicLaserSight.cs.
 - Verification: Unity compiled the final script successfully; inspected shoulder-mode visibility, aim-point direction, range and hide conditions. A live aiming/impact visual check was not performed in this change.
+
+## 2026-11-05 — First-person aiming with laser sight
+
+- Replaced the shoulder aiming view with a centered, eye-level pistol view using the original hands and pistol from the inspection prefab. The camera zone and player dropdowns show **First Person Aim** and preserve existing selections.
+- The red laser and projectiles share the visible muzzle position and mouse-controlled aim point. Nearby solid scenery limits the muzzle position, and the first-person beam and close-range impact dot are smaller for the tighter framing.
+- Updated `Assets/_Scripts/Player/ShoulderAim.cs`, `FirstPersonAimModel.cs` and metadata, `ShootingMode.cs`, `Assets/_Scripts/Gun/GunController.cs` and `ClassicLaserSight.cs`, `Assets/_Scripts/Systems/CamSwitcher.cs` and `Editor/ShootingModeValidation.cs`, and `CAMERA_SHOTS.md`.
+- Unity compilation and 42 controlled Play-mode checks passed, covering eye-level camera placement, model visibility, shared muzzle alignment, firing and switching back to Classic. Reviewed the MainGame render at `Logs/Combat/first-person-aim.png`. Standalone builds and a manual keyboard playthrough remain unverified.
+
+## 2026-11-05 — Fix FPS aim with non-readable meshes
+
+- Fixed the errors on entering FPS aim. Pistol placement now uses mesh bounds, which are available at runtime with Read/Write disabled. The setup also checks that both weapon meshes exist before creating the foreground camera.
+- Updated `Assets/_Scripts/Player/FirstPersonAimModel.cs`. Unity compiled successfully and all 42 shooting checks passed in MainGame Play mode with both the barrel and slide reporting `isReadable == false`. Standalone builds were not tested.
+
+## 2026-11-05 — Hide FPS hands on exit and widen aim
+
+- Leaving FPS aim now deactivates the entire foreground model, preventing exploration and equipment inspection cameras from drawing leftover hands or a duplicate pistol. The model reactivates on the next aim.
+- Widened the default FPS field of view from 50° to 58° for a less zoomed-in view.
+- Updated `FirstPersonAimModel.cs`, `ShoulderAim.cs`, and `ShootingModeValidation.cs`. All 43 controlled MainGame Play-mode checks passed, including model deactivation on mode switch and focus loss. The live player reported a 58° aim setting. Manual visual inspection and standalone builds remain unverified.
+
+## 2026-11-05 — Clearer FPS Glock and smaller bullets
+
+- Added a dedicated low-poly Glock for first-person aiming with a dark beveled slide, rear plate, slide serrations and distinct iron sights. Adjusted the hand placement and aligned the laser and shot origin with the close-up muzzle.
+- Scaled the gameplay projectile visual to 35% of its previous size. The root hit sphere, damage and speed retain their existing values.
+- Updated `Assets/_Scripts/Player/FirstPersonAimModel.cs`, added `FirstPersonPistol.cs` and `Assets/Resources/FirstPersonPistol.shader` with metadata, and updated `Assets/Prefabs/projectile.prefab`. Unity compilation and all 43 MainGame Play-mode shooting checks passed. Inspected the final render at `Logs/Combat/detailed-glock.png`. Standalone builds were not tested.
+
+## 2026-11-05 — Restore the original textured Glock in FPS aim
+
+- Restored the game's original textured Glock meshes and materials for FPS aim and removed the procedural pistol script and shader. Lowered the pistol slightly, moved it farther from the camera, and brought the support hand closer to the grip. The laser uses the original barrel position, and bullets retain their smaller visual size.
+- Updated `Assets/_Scripts/Player/FirstPersonAimModel.cs` and removed the procedural pistol files and their Unity metadata. Unity compilation and all 43 MainGame Play-mode shooting checks passed. The final pose was not visually reviewed.
+
+## 2026-11-05 — Sharper FPS Glock texture and angled pose
+
+- Applied the existing 256×256 Glock texture through a material used by the FPS weapon. Turned the hands and pistol 13° around the muzzle to show more of the slide while keeping the laser and shot origin aligned.
+- Updated `Assets/_Scripts/Player/FirstPersonAimModel.cs` and added `Assets/Resources/FirstPersonGlock.mat` and its metadata. Unity compiled, all 43 MainGame shooting checks passed, and the rendered preview confirmed the 256×256 texture and angled pose. Standalone builds were not tested.
+
+## 2026-11-05 — Straighten the FPS Glock
+
+- Removed the 13° turn from the FPS pistol and hands in `Assets/_Scripts/Player/FirstPersonAimModel.cs`. The original Glock points straight ahead with the 256×256 texture.
+- Verified the pose change in source. Unity Play mode was not rerun.
+
+## 2026-11-05 — Restore the straight-on Glock silhouette
+
+- Widened the FPS Glock by 20% around the muzzle and disabled retro vertex snapping on its close-up material. The full rear slide is visible in straight-on aim, with the laser still centered.
+- Updated `FirstPersonAimModel.cs`, `FirstPersonGlock.mat`, and the PSX Lite Unlit shader and include. Unity compiled and all 43 Play-mode shooting checks passed. Visually verified the full slide in `Logs/Combat/wide-fps-glock.png`.

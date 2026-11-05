@@ -37,7 +37,7 @@ public sealed class ClassicLaserSight : MonoBehaviour
         if (!visible) { Hide(); return; }
         if (beam == null && !CreateVisuals()) return;
 
-        Vector3 start = gun.firePoint.position;
+        Vector3 start = shoulderAiming ? shoulder.GetMuzzlePosition(gun.firePoint) : gun.firePoint.position;
         Vector3 direction = gun.firePoint.forward;
         if (shoulderAiming)
         {
@@ -64,7 +64,7 @@ public sealed class ClassicLaserSight : MonoBehaviour
             distance = hits[i].distance;
         }
 
-        beam.startWidth = beam.endWidth = Mathf.Max(.001f, beamWidth);
+        beam.startWidth = beam.endWidth = Mathf.Max(.001f, shoulderAiming ? beamWidth * .45f : beamWidth);
         beam.startColor = beam.endColor = laserColor;
         material.SetColor("_Color", laserColor);
         beam.SetPosition(0, start);
@@ -75,7 +75,8 @@ public sealed class ClassicLaserSight : MonoBehaviour
         {
             dot.transform.position = hits[nearest].point + hits[nearest].normal * .01f;
             // World scale is independent of the gun/model's authored scale.
-            dot.transform.localScale = Vector3.one * Mathf.Max(.001f, dotDiameter);
+            float diameter = shoulderAiming ? Mathf.Min(dotDiameter, distance * .012f) : dotDiameter;
+            dot.transform.localScale = Vector3.one * Mathf.Max(.001f, diameter);
         }
     }
 

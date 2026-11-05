@@ -8,17 +8,16 @@ public sealed class ShoulderAim : MonoBehaviour
     [Min(0.01f)] public float mouseSensitivity = 2f;
     public bool invertY;
     [Min(0f)] public float transitionDuration = 0.4f;
-    public Vector3 shoulderOffset = new Vector3(0.55f, 1.55f, -2.2f);
-    [Range(20, 90)] public float fieldOfView = 50f;
+    [Min(.1f)] public float eyeHeight = 1.55f;
+    [Range(20, 90)] public float fieldOfView = 58f;
     [Range(1, 80)] public float pitchLimit = 45f;
     [Min(1)] public float aimDistance = 100f;
-    [Min(0.01f)] public float collisionRadius = 0.18f;
     public float Pitch { get; private set; }
     public bool IsActive => active && view != null;
     private Camera view;
     private CinemachineBrain brain;
     private TankControls controls;
-    private GameObject crosshair;
+    private readonly FirstPersonAimModel aimModel = new();
     private bool active, brainWasEnabled, cursorVisible;
     private CursorLockMode cursorLock;
     private Vector3 oldPosition;
@@ -61,7 +60,6 @@ public sealed class ShoulderAim : MonoBehaviour
             active = true;
             if (brain != null) brain.enabled = false;
 
-            if (crosshair != null) crosshair.SetActive(true);
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
             // Ignore the mouse delta from the frame that captured the cursor.
@@ -102,16 +100,30 @@ public sealed class ShoulderAim : MonoBehaviour
     {
         if (view == null) return;
         Quaternion rotation = Quaternion.Euler(Pitch, yaw, 0);
-        Vector3 pivot = transform.position + Vector3.up * shoulderOffset.y;
-        Vector3 offset = rotation * new Vector3(shoulderOffset.x, 0, shoulderOffset.z);
-        float distance = offset.magnitude;
-        float allowed = distance;
-        foreach (var hit in Physics.SphereCastAll(pivot, collisionRadius, offset.normalized, distance, ~0, QueryTriggerInteraction.Ignore))
+        Vector3 eye = transform.position + Vector3.up * eyeHeight + transform.forward * .05f;
+        ApplyBlend(eye, rotation, fieldOfView);
+        if (BlendFraction >= 1f)
         {
-            if (hit.transform.IsChildOf(transform)) continue;
-            allowed = Mathf.Min(allowed, Mathf.Max(0, hit.distance - 0.05f));
+            aimModel.Show(view, transform);
+            aimModel.AnimateReload(controls != null ? controls.EquippedGun : null);
         }
-        ApplyBlend(pivot + offset.normalized * allowed, rotation, fieldOfView);
+    }
+
+    public Vector3 GetMuzzlePosition(Transform fallback)
+    {
+        if (!IsActive || !aimModel.Visible) return fallback.position;
+        Vector3 muzzle = aimModel.MuzzlePosition;
+        Vector3 start = view.transform.position;
+        Vector3 offset = muzzle - start;
+        float distance = offset.magnitude;
+        if (distance <= .001f) return muzzle;
+        Vector3 direction = offset / distance;
+        foreach (var hit in Physics.RaycastAll(start, direction, distance, ~0, QueryTriggerInteraction.Ignore))
+        {
+            if (hit.transform.IsChildOf(transform) || hit.collider.GetComponentInParent<Projectile>() != null) continue;
+            distance = Mathf.Min(distance, Mathf.Max(0f, hit.distance - .02f));
+        }
+        return start + direction * distance;
     }
 
     private float BlendFraction => transitionDuration <= 0f ? 1f : Mathf.Clamp01(blendElapsed / transitionDuration);
@@ -170,7 +182,7 @@ public sealed class ShoulderAim : MonoBehaviour
     {
         if (!active) return;
         active = false;
-        if (crosshair != null) crosshair.SetActive(false);
+        aimModel.Hide();
         if (view != null)
         {
             CaptureBlendStart();
@@ -192,38 +204,5 @@ public sealed class ShoulderAim : MonoBehaviour
         }
     }
     private void OnApplicationFocus(bool focused) { if (!focused) EndAim(); }
-    private void OnDestroy() { EndAim(); if (crosshair != null) Destroy(crosshair); }
-
-    private void BuildCrosshair()
-    {
-        crosshair = new GameObject("AimCrosshair", typeof(RectTransform), typeof(Canvas), typeof(UnityEngine.UI.CanvasScaler));
-        UnityEngine.SceneManagement.SceneManager.MoveGameObjectToScene(crosshair, gameObject.scene);
-        var canvas = crosshair.GetComponent<Canvas>();
-        canvas.renderMode = RenderMode.ScreenSpaceOverlay;
-        canvas.sortingOrder = 95;
-        var scaler = crosshair.GetComponent<UnityEngine.UI.CanvasScaler>();
-        scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
-        scaler.referenceResolution = new Vector2(1280, 720);
-        scaler.matchWidthOrHeight = 0.5f;
-        Bar(new Vector2(-9, 0), new Vector2(8, 2));
-        Bar(new Vector2(9, 0), new Vector2(8, 2));
-        Bar(new Vector2(0, -9), new Vector2(2, 8));
-        Bar(new Vector2(0, 9), new Vector2(2, 8));
-    }
-
-    private void Bar(Vector2 position, Vector2 size)
-    {
-        var obj = new GameObject("CrosshairBar", typeof(RectTransform), typeof(UnityEngine.UI.Image), typeof(UnityEngine.UI.Outline));
-        var rect = obj.GetComponent<RectTransform>();
-        rect.SetParent(crosshair.transform, false);
-        rect.anchorMin = rect.anchorMax = new Vector2(0.5f, 0.5f);
-        rect.anchoredPosition = position;
-        rect.sizeDelta = size;
-        var image = obj.GetComponent<UnityEngine.UI.Image>();
-        image.color = Color.white;
-        image.raycastTarget = false;
-        var outline = obj.GetComponent<UnityEngine.UI.Outline>();
-        outline.effectColor = new Color(0, 0, 0, 0.8f);
-        outline.effectDistance = Vector2.one;
-    }
+    private void OnDestroy() { EndAim(); aimModel.Destroy(); }
 }
