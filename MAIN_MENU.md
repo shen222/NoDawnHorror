@@ -14,7 +14,7 @@ MainMenu contains the menu character, camera, controller, visible alley scenery,
 
 Play-mode checks are recorded in Logs/Menu/manual-validation.txt. Standalone fullscreen and executable quit still need a build check.
 
-Fonts: Plane Crash is reserved for the title; Pixelta is used for all other menu and gameplay text. The usable TMP assets are in Assets/Resources/Fonts. Japanese uses the existing Noto Sans JP fallback. Run Tools/Fonts/Prepare Game Fonts to validate/recreate missing assets. Plane Crash uses lowercase source characters to display its distressed uppercase title lettering.
+The menu title uses Assets/Resources/NoDawnLogo.png: the approved white Pixelta logo with a small Japanese subtitle and a transparent background. GunMenu displays it at the top left, excluding the export's transparent margins. Pixelta is used for all other menu and gameplay text. The usable TMP assets are in Assets/Resources/Fonts. Japanese uses the existing Noto Sans JP fallback. Run Tools/Fonts/Prepare Game Fonts to validate/recreate missing font assets.
 
 To place the character: stop Play mode, select Menu Character in the Hierarchy, press W in the Scene view and drag the movement arrows, or type exact Transform > Position values. Press F to frame her and Ctrl+S to save. GunMenu preserves that position; only facing and aim change during play. Movement keys do not move her in the running menu. Select Menu Camera to change the shot framing. Large framing changes may need additional scenery because off-screen village objects were removed.
 

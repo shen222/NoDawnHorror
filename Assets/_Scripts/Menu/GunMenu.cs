@@ -321,9 +321,17 @@ public sealed class GunMenu : MonoBehaviour
         scaler.uiScaleMode = UnityEngine.UI.CanvasScaler.ScaleMode.ScaleWithScreenSize;
         scaler.referenceResolution = new Vector2(1280,720);
         scaler.matchWidthOrHeight = .5f;
-        // Plane Crash stores its distressed capital lettering in the lowercase character slots.
-        var title = Label(root.transform, "no dawn", new Vector2(.23f,.87f), new Vector2(350,70), 40);
-        title.font = GameFonts.Title;
+        var titleObject = new GameObject("No Dawn Logo", typeof(RectTransform), typeof(UnityEngine.UI.RawImage));
+        titleObject.transform.SetParent(root.transform, false);
+        var title = titleObject.GetComponent<UnityEngine.UI.RawImage>();
+        title.texture = Resources.Load<Texture2D>("NoDawnLogo");
+        title.raycastTarget = false;
+        // Exclude the transparent export margins while preserving the approved artwork.
+        title.uvRect = new Rect(274f / 1400f, 133f / 500f, 850f / 1400f, 238f / 500f);
+        title.rectTransform.anchorMin = title.rectTransform.anchorMax = new Vector2(0, 1);
+        title.rectTransform.pivot = new Vector2(0, 1);
+        title.rectTransform.anchoredPosition = new Vector2(70, -32);
+        title.rectTransform.sizeDelta = new Vector2(350, 98);
         settingsHeading = Label(root.transform, "", new Vector2(.77f,.86f), new Vector2(350,55), 26);
         settingsHeading.alignment = TextAlignmentOptions.Center;
         hint = Label(root.transform, "", new Vector2(.5f,.065f), new Vector2(800,35), 16);

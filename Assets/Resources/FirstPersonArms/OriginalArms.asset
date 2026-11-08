@@ -1,0 +1,21 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b4a316d4918231e4cbef6ed3c3630425, type: 3}
+  m_Name: OriginalArms
+  m_EditorClassIdentifier: 
+  parts:
+  - rendererName: Mesh_4
+    mesh: {fileID: 4300000, guid: 4c3fe687e41ad854db8aed5838655ff0, type: 2}
+  - rendererName: Skinned Mesh 0
+    mesh: {fileID: 4300000, guid: 5e1977ccc2afeb64aa398bcf9291c75a, type: 2}
+  - rendererName: Skinned Mesh 3
+    mesh: {fileID: 4300000, guid: ef587513b7aaf0844b5742d4d57c290c, type: 2}

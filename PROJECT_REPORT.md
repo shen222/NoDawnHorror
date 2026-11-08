@@ -224,3 +224,24 @@ Dates use Asia/Tokyo.
 
 - Moved the first-person camera 8 cm back and widened its field of view from 58° to 74° in `Assets/_Scripts/Player/ShoulderAim.cs`.
 - Confirmed in MainGame that the original hands and forearms are visible and the face stays out of frame in the held aiming pose. All 42 Play-mode shooting checks passed. The full reload animation was not visually reviewed with this framing.
+
+## 2026-11-09 — Review the animation and FPS shooting additions
+
+- Reviewed the live MainGame FPS/classic shooting modes and original character/Glock animations without changing gameplay scripts, animation assets or scene settings. The existing 42 mode assertions passed; timed playback confirmed an early reload unlock: a shot was accepted at 1.25 seconds while the character reload was only about 71% complete. Captures also show the weapon mostly outside the FPS frame during reloading.
+- Identified a test-tool side effect: ShootingModeValidation's temporary rig resets real zone-camera priorities, allowing Alleyway FULL to override the selected exploration zone. A fresh Play session restored the correct priority-20 camera and kept the player in frame. The existing suite also calls Cinemachine ManualUpdate in automatic mode. These findings were recorded, not fixed.
+- Saved detailed findings, timings and captures in Logs/Review/animation-shooting-review.md, reload-timing.txt and fps-*.png; retained the corrected temporary CombatReviewProbe.cs outside Assets. Existing Logs/Combat verification outputs were refreshed. Archived diagnostic errors and initial warnings in Logs/Review/diagnostic-console.json before clearing the Console; a fresh run had no runtime errors. Initial terrain shader warnings and the validation reference-comparison warning remain unresolved.
+- Verification: Unity compiled successfully; confirmed advancing frames, 42 functional assertions and the reload timing on the real animators. The first playback helper's incorrect ManualUpdate call was removed before repeated timing/capture checks. Restored temporary controls/ammo/cursor, restored runInBackground=false and returned MainGame to Edit mode. Standalone builds, full-speed manual playback and all camera-zone combinations were not tested.
+
+## 2026-11-09 — Fix FPS hand visibility across aiming angles
+
+- Reframed the first-person camera so both original hands remain visible when aiming straight, upward and downward. The camera offset now follows pitch. FPS aim renders arm-only selections from the original skinned character meshes, with the existing materials, bones and animations; the head and torso are hidden while aiming and restored afterward. The actual animated Glock and muzzle remain in use. Firing and reload poses are better framed.
+- Updated `Assets/_Scripts/Player/ShoulderAim.cs`; added `FirstPersonArmDisplay.cs`, `FirstPersonArmMeshes.cs`, `Assets/_Scripts/Systems/Editor/FirstPersonArmSetup.cs`, generated meshes/data in `Assets/Resources/FirstPersonArms`, and their Unity metadata. Updated `CAMERA_SHOTS.md` with the camera defaults and rebuild tool.
+- Corrected `ShootingModeValidation.cs` so its temporary brain uses manual updating and it restores every existing camera priority. Also resolved its reference-comparison compiler warning. All 42 shooting checks passed, with an independent check confirming camera priorities were unchanged after validation.
+- Verification: Unity compilation passed with no Console errors. Controlled MainGame captures verified straight aim, +/-25 degrees and +/-45 degrees, firing, and mid/late reload. Both wrist positions remained within the camera frame at all five held angles. The probe confirmed original head/body visibility restored and temporary FPS arm renderers disabled after exit. Evidence is in `Logs/FPSFraming` and `Logs/Combat/shooting-modes.txt`. Unity returned to Edit mode with MainGame clean and runInBackground=false.
+- Standalone builds, full-speed manual playback and traversal near walls were not tested. The previously observed early reload unlock was outside this view fix and remains unchanged.
+
+## 2026-11-09 — Add the approved white menu logo
+
+- Replaced the main menu's Plane Crash text title with the approved transparent white Pixelta NO DAWN logo, including the small centered Japanese subtitle. Positioned it at the top left and excluded transparent export margins without changing the artwork. The logo does not intercept input.
+- Affected files: Assets/_Scripts/Menu/GunMenu.cs, Assets/Resources/NoDawnLogo.png and its metadata, MAIN_MENU.md.
+- Verification: Confirmed the imported PNG exactly matches the approved transparent export by SHA-256; inspected its alpha bounds and matched the display proportions. Targeted diff whitespace checks passed. Unity's editor connection reported Pipeline load pending, so compilation, live menu appearance, and standalone builds remain unverified.

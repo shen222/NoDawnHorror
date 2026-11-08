@@ -18,6 +18,7 @@ public static class ShootingModeValidation
         var root = new GameObject("Temporary shooting mode verification");
         root.transform.position = new Vector3(100000, 100000, 100000);
         var originalMain = Camera.main;
+        var scenePriorities = UnityEngine.Object.FindObjectsByType<CinemachineCamera>(FindObjectsInactive.Include, FindObjectsSortMode.None).ToDictionary(c => c, c => c.Priority);
         CursorLockMode oldLock = Cursor.lockState;
         bool oldCursor = Cursor.visible;
         ShoulderAim shoulder = null;
@@ -48,6 +49,7 @@ public static class ShootingModeValidation
             camera.transform.position = player.transform.position + new Vector3(5, 3, -5);
             camera.transform.LookAt(player.transform.position + Vector3.up);
             var brain = cameraRoot.AddComponent<CinemachineBrain>();
+            brain.UpdateMethod = CinemachineBrain.UpdateMethods.ManualUpdate;
             var collision = cameraRoot.AddComponent<CameraObstacleAvoidance>();
             collision.enabled = false;
             collision.player = player.transform;
@@ -167,9 +169,9 @@ public static class ShootingModeValidation
             Check(Aim(Vector2.zero, true) && shoulder.IsActive && brain.enabled, "FPS aiming keeps Cinemachine active");
             var aimCamera = player.transform.Find("First Person Aim Camera").GetComponent<CinemachineCamera>();
             brain.ManualUpdate();
-            Check(aimCamera.enabled && brain.ActiveVirtualCamera == aimCamera, "Cinemachine selects the FPS aim camera");
+            Check(aimCamera.enabled && brain.ActiveVirtualCamera as CinemachineCamera == aimCamera, "Cinemachine selects the FPS aim camera");
             Vector3 eye = player.transform.position + Vector3.up * shoulder.eyeHeight +
-                player.transform.forward * shoulder.eyeForwardOffset + player.transform.right * shoulder.eyeSideOffset;
+                Quaternion.Euler(shoulder.Pitch, player.transform.eulerAngles.y, 0) * new Vector3(shoulder.eyeSideOffset, shoulder.eyeVerticalOffset, shoulder.eyeForwardOffset);
             Check(Vector3.Distance(camera.transform.position, eye) < .03f,
                 "first-person aim places the camera at eye level");
             rotation = player.transform.rotation;
@@ -233,6 +235,7 @@ public static class ShootingModeValidation
             if (shoulder != null) shoulder.ReturnToExplorationImmediately();
             UnityEngine.Object.DestroyImmediate(root);
             if (originalMain != null) originalMain.tag = "MainCamera";
+            foreach (var pair in scenePriorities) if (pair.Key != null) pair.Key.Priority = pair.Value;
             Cursor.lockState = oldLock;
             Cursor.visible = oldCursor;
         }

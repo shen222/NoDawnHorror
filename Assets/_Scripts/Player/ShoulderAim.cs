@@ -8,8 +8,9 @@ public sealed class ShoulderAim : MonoBehaviour
 {
     [Min(0.01f)] public float mouseSensitivity = 2f;
     public bool invertY;
-    [Min(0f)] public float eyeForwardOffset = .06f;
+    [Range(-.35f, .2f)] public float eyeForwardOffset = -.18f;
     public float eyeSideOffset = .10f;
+    public float eyeVerticalOffset = -.025f;
     [Min(.1f)] public float eyeHeight = 1.55f;
     [Range(20, 90)] public float fieldOfView = 74f;
     [Range(1, 80)] public float pitchLimit = 45f;
@@ -25,6 +26,7 @@ public sealed class ShoulderAim : MonoBehaviour
     private CursorLockMode cursorLock;
     private float yaw;
     private readonly Dictionary<MeshRenderer, Material> originalGunMaterials = new();
+    private readonly FirstPersonArmDisplay armDisplay = new();
 
     internal bool OwnsCamera => IsActive && aimCamera != null && brain != null && brain.IsLiveChild(aimCamera);
 
@@ -71,6 +73,7 @@ public sealed class ShoulderAim : MonoBehaviour
             Pitch = controls != null ? -controls.AimAngle : 0;
             active = true;
             ApplyFirstPersonGunMaterial();
+            armDisplay.Show(transform, controls != null && controls.EquippedGun != null ? controls.EquippedGun.transform : null);
 
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
@@ -98,7 +101,8 @@ public sealed class ShoulderAim : MonoBehaviour
     {
         Quaternion rotation = Quaternion.Euler(Pitch, yaw, 0f);
         Vector3 eye = head != null ? head.position + Vector3.up * .055f : transform.position + Vector3.up * eyeHeight;
-        Vector3 position = eye + transform.forward * eyeForwardOffset + transform.right * eyeSideOffset;
+        // Rotate the framing offset with the view so pitch does not push the camera toward the grip.
+        Vector3 position = eye + rotation * new Vector3(eyeSideOffset, eyeVerticalOffset, eyeForwardOffset);
         aimCamera.transform.SetPositionAndRotation(position, rotation);
     }
 
@@ -136,6 +140,7 @@ public sealed class ShoulderAim : MonoBehaviour
         foreach (var pair in originalGunMaterials)
             if (pair.Key != null) pair.Key.sharedMaterial = pair.Value;
         originalGunMaterials.Clear();
+        armDisplay.Hide();
         Cursor.lockState = cursorLock;
         Cursor.visible = cursorVisible;
     }
@@ -160,6 +165,7 @@ public sealed class ShoulderAim : MonoBehaviour
     private void OnDestroy()
     {
         EndAim();
+        armDisplay.Dispose();
         if (aimCamera != null) Destroy(aimCamera.gameObject);
     }
 }

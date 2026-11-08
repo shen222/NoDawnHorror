@@ -216,3 +216,16 @@ The original gun's long green cylinder stays hidden; the new sight uses a
 depth-tested beam that stops at scenery. Its unlit shader is stored in Resources
 so it is included in builds. The combat validation now includes laser behavior
 and a rendered visibility check; its preview is `Logs/Combat/classic-laser.png`.
+
+### Original hands in first-person aim
+
+FPS aim now displays arm-only selections from the original character meshes on
+her existing animated bones. The full head and torso are hidden during FPS aim
+and restored on exit; the actual animated Glock remains attached to her hand.
+This keeps both original hands visible without the camera looking into her jacket.
+The camera offset rotates with mouse pitch. Defaults on Shoulder Aim are
+-0.18 m forward, +0.10 m sideways, -0.025 m vertical, with a 74 degree field of view.
+
+To rebuild the arm selections after replacing the player model, open MainGame
+outside Play mode and run **Tools > Combat > Rebuild Original FPS Arms**.
+The generated assets are in `Assets/Resources/FirstPersonArms`.
