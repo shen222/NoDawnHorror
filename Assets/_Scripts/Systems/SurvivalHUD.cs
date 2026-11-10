@@ -103,7 +103,7 @@ public sealed class SurvivalHUD : MonoBehaviour
     private void Update()
     {
         if (health == null || centerText == null) return;
-        if (Input.GetKeyDown(KeyCode.Escape) && !health.IsDead && !PlayerInspection.ConsumedEscape && !PlayerInspection.BlocksPlayer)
+        if (Input.GetKeyDown(KeyCode.Escape) && !health.IsDead && !PlayerInspection.ConsumedEscape && !PlayerInspection.BlocksPlayer && !PlayerItemInteraction.BlocksPlayer && !PlayerItemInteraction.ConsumedInput)
         {
             if (!paused)
             {

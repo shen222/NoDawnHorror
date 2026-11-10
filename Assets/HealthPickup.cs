@@ -1,19 +1,21 @@
 using UnityEngine;
 
-public class HealthPickup : MonoBehaviour
+public class HealthPickup : PickupItem
 {
-    private void OnTriggerEnter(Collider other)
+    [Min(1)] public int healAmount = 50;
+    protected override string DefaultName => "回復薬";
+
+    protected override bool GiveTo(TankControls player, out string message)
     {
-        if (other.gameObject.layer == LayerMask.NameToLayer("Player"))
+        var health = player.GetComponent<HealthManager>();
+        message = "";
+        if (health.CurrentHealth >= health.MaxHealth)
         {
-            HealthManager healthManager = other.GetComponent<HealthManager>();
-            if (healthManager != null && !healthManager.IsDead)
-            {
-                healthManager.Heal(50);
-                // play pickup sound effect 
-                // play pickup vfx
-                Destroy(gameObject);
-            }
+            message = "今は回復する必要がない。";
+            return false;
         }
+        if (healAmount <= 0) return false;
+        health.Heal(healAmount);
+        return true;
     }
 }

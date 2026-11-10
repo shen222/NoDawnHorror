@@ -1,22 +1,22 @@
 using UnityEngine;
 
-public class AmmoPickup : MonoBehaviour
+public class AmmoPickup : PickupItem
 {
     public int ammoAmount = 5;
 
-    private void OnTriggerEnter(Collider other)
+    protected override string DefaultName => "ハンドガンの弾";
+
+    protected override bool GiveTo(TankControls player, out string message)
     {
-        Gun gun = other.GetComponentInChildren<Gun>();
-        if (gun != null)
+        Gun gun = player.EquippedGun != null ? player.EquippedGun : player.GetComponentInChildren<Gun>();
+        message = "";
+        if (gun == null)
         {
-            gun.AddReserveAmmo(ammoAmount);
-            //play reload sound effect
-            Debug.Log($"Ammo picked up! {ammoAmount} bullets added to reserve.");
-            Destroy(gameObject);
+            message = "この弾を使える武器を持っていない。";
+            return false;
         }
-        else
-        {
-            Debug.Log("No gun found on player to add ammo.");
-        }
+        if (ammoAmount <= 0) return false;
+        gun.AddReserveAmmo(ammoAmount);
+        return true;
     }
 }

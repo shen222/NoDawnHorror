@@ -76,7 +76,7 @@ public sealed class DialogueSystem : MonoBehaviour
 
     private void Update()
     {
-        if (PlayerInspection.BlocksPlayer) { subtitle.enabled = hint.enabled = false; return; }
+        if (PlayerInspection.BlocksPlayer || PlayerItemInteraction.BlocksPlayer || PlayerItemInteraction.ConsumedInput) { subtitle.enabled = hint.enabled = false; return; }
         if (player == null || (health != null && health.IsDead)) { Stop(); return; }
         // Pause also freezes automatic subtitles and prevents advancing hidden dialogue.
         if (Time.timeScale == 0f)
