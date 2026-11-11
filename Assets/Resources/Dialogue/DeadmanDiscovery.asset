@@ -16,5 +16,5 @@ MonoBehaviour:
   autoAdvance: 1
   lines:
   - speaker: 
-    text: "\u6B7B\u3093\u3067\u308B\u2026\u2026\u3053\u3053\u3067\u4F55\u304C\u3042\u3063\u305F\u306E\uFF1F"
+    text: "\u6B7B\u3093\u3067\u308B\u2026"
     duration: 4.5
