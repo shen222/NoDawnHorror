@@ -1,4 +1,5 @@
 using System;
+using Unity.Cinemachine;
 using UnityEngine;
 
 // Run after both Cinemachine and ShoulderAim, including their camera blends.
@@ -22,6 +23,8 @@ public sealed class CameraObstacleAvoidance : MonoBehaviour
     public bool fixedShot { get; set; }
 
     private Camera view;
+    private CinemachineBrain brain;
+    private ICinemachineCamera previousLiveCamera;
     private SphereCollider probe;
     private RaycastHit[] hits = new RaycastHit[32];
     private Collider[] overlaps = new Collider[32];
@@ -30,11 +33,18 @@ public sealed class CameraObstacleAvoidance : MonoBehaviour
     private bool hasPreviousPosition;
     private ShoulderAim firstPersonAim;
 
-    private void Awake() => view = GetComponent<Camera>();
+    private void Awake()
+    {
+        view = GetComponent<Camera>();
+        brain = GetComponent<CinemachineBrain>();
+    }
 
     private void LateUpdate()
     {
         if (player == null) return;
+        var liveCamera = brain != null ? brain.ActiveVirtualCamera : null;
+        bool liveCameraChanged = !ReferenceEquals(liveCamera, previousLiveCamera);
+        previousLiveCamera = liveCamera;
         if (firstPersonAim == null || firstPersonAim.transform != player)
             firstPersonAim = player.GetComponent<ShoulderAim>();
         if (firstPersonAim != null && firstPersonAim.OwnsCamera)
@@ -44,8 +54,9 @@ public sealed class CameraObstacleAvoidance : MonoBehaviour
         }
         // Recovery belongs to the previous shot. Carrying it across a cut can
         // pull a correctly selected Cinemachine camera back to the old view.
+        // The brain can apply the cut a frame after the zone changes.
         // The new shot still gets the near-plane overlap check below.
-        if (fixedShot || (preserveAuthoredPosition && transitionInProgress))
+        if (fixedShot || liveCameraChanged || (preserveAuthoredPosition && transitionInProgress))
         {
             recovering = false;
             hasPreviousPosition = false;
